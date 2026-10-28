@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An overview of a simple inventory management system for tracking products, purchases, sales, and stock.">
+  <title>StockWise — Inventory Management Project</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17251f;
+      --muted: #64736c;
+      --green: #176b50;
+      --green-dark: #104e3b;
+      --mint: #e9f4ee;
+      --paper: #f7f8f5;
+      --line: #e3e9e4;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .hero {
+      padding: 76px 0 80px;
+      background:
+        radial-gradient(ellipse at 85% 18%, rgba(181, 221, 197, 0.5), transparent 32%),
+        linear-gradient(135deg, #f3f8f3, #f7f8f5 62%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--green);
+      font-size: 0.77rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin-bottom: 20px;
+      font-size: clamp(2.7rem, 6vw, 4.6rem);
+      line-height: 1.04;
+      letter-spacing: -0.065em;
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.94rem;
+      font-weight: 700;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .dashboard {
+      padding: 22px;
+      border: 1px solid rgba(23, 37, 31, 0.08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 24px 65px rgba(28, 62, 45, 0.12);
+    }
+
+    .dashboard-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-title {
+      margin: 0;
+      font-size: 0.96rem;
+      font-weight: 800;
+    }
+
+    .status {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 17px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fcfdfb;
+    }
+
+    .stat-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .inventory-list {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .inventory-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.8rem;
+    }
+
+    .inventory-row:last-child {
+      border-bottom: 0;
+    }
+
+    .inventory-head {
+      background: #f6f8f5;
+      color: var(--muted);
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .product {
+      font-weight: 700;
+    }
+
+    .quantity {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--mint);
+      color: var(--green);
+      font-size: 1.15rem;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .feature-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+      gap: 72px;
+    }
+
+    .about-grid h2 {
+      margin-bottom: 15px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.05em;
+    }
+
+    .about-grid p {
+      color: var(--muted);
+    }
+
+    .workflow {
+      display: grid;
+      gap: 16px;
+    }
+
+    .workflow-item {
+      display: flex;
+      gap: 15px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .workflow-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .step {
+      flex: 0 0 32px;
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--mint);
+      color: var(--green);
+      font-size: 0.83rem;
+      font-weight: 800;
+    }
+
+    .workflow-item h3 {
+      margin-bottom: 3px;
+      font-size: 0.98rem;
+    }
+
+    .workflow-item p {
+      margin-bottom: 0;
+      font-size: 0.87rem;
+    }
+
+    .tech {
+      padding-top: 50px;
+    }
+
+    .tech-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 32px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .tech-inner h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-tags span {
+      padding: 8px 12px;
+      border-radius: 7px;
+      background: var(--paper);
+      color: var(--green-dark);
+      font-size: 0.83rem;
+      font-weight: 700;
+    }
+
+    .site-footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-inner p {
+      margin: 0;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+
+      .hero {
+        padding: 58px 0;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tech-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1100px);
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 0.8rem;
+      }
+
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .dashboard {
+        padding: 15px;
+      }
+
+      .inventory-row {
+        gap: 8px;
+        padding: 11px 9px;
+        font-size: 0.72rem;
+      }
+
+      .tech-inner {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="StockWise home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>StockWise</span>
+      </a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How it works</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Inventory management project</p>
+          <h1>Know what’s in stock. Keep business moving.</h1>
+          <p class="hero-copy">
+            A simple inventory management system that keeps product records,
+            purchases, sales, and stock levels organized in one place.
+          </p>
+          <a class="button" href="#overview">Explore the project <span aria-hidden="true">&nbsp;→</span></a>
+        </div>
+
+        <div class="dashboard" aria-label="Illustrative inventory dashboard">
+          <div class="dashboard-top">
+            <p class="dashboard-title">Inventory snapshot</p>
+            <span class="status">Stock tracked</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">Products</span>
+              <span class="stat-value">Catalog</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Stock changes</span>
+              <span class="stat-value">Tracked</span>
+            </div>
+          </div>
+          <div class="inventory-list" role="table" aria-label="Example product list">
+            <div class="inventory-row inventory-head" role="row">
+              <span role="columnheader">Product</span>
+              <span role="columnheader">Price</span>
+              <span role="columnheader">On hand</span>
+            </div>
+            <div class="inventory-row" role="row">
+              <span class="product" role="cell">Notebook</span>
+              <span role="cell">$4.50</span>
+              <span class="quantity" role="cell">32 units</span>
+            </div>
+            <div class="inventory-row" role="row">
+              <span class="product" role="cell">Desk lamp</span>
+              <span role="cell">$18.00</span>
+              <span class="quantity" role="cell">14 units</span>
+            </div>
+            <div class="inventory-row" role="row">
+              <span class="product" role="cell">Storage box</span>
+              <span role="cell">$7.25</span>
+              <span class="quantity" role="cell">21 units</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">What it can do</p>
+          <h2>Everyday stock tasks, made straightforward.</h2>
+          <p>
+            The project brings essential inventory operations into a clear,
+            repeatable workflow.
+          </p>
+        </div>
+        <div class="features">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">＋</span>
+            <h3>Manage products</h3>
+            <p>Add products to the catalog and record their names and selling prices.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">↗</span>
+            <h3>Record purchases</h3>
+            <p>Log incoming quantities and update stock when new items arrive.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">↘</span>
+            <h3>Track sales</h3>
+            <p>Record outgoing items, calculate sale totals, and reduce stock.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">▤</span>
+            <h3>View inventory</h3>
+            <p>Review product IDs, prices, and available quantities in one list.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="overview">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">Project overview</p>
+          <h2>A practical introduction to inventory workflows.</h2>
+          <p>
+            This project is designed to help a small shop keep its product and
+            stock information consistent. Product, purchase, and sale records
+            are stored in a database, while stock quantities change as purchases
+            and sales are recorded.
+          </p>
+          <p>
+            Before completing a sale, the system checks that the product exists
+            and that enough stock is available.
+          </p>
+        </div>
+        <div class="workflow" id="workflow">
+          <div class="workflow-item">
+            <span class="step">1</span>
+            <div>
+              <h3>Create a product</h3>
+              <p>Save the product name and price, then create its stock record.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span class="step">2</span>
+            <div>
+              <h3>Receive inventory</h3>
+              <p>Record a purchase and add its quantity to the current stock.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span class="step">3</span>
+            <div>
+              <h3>Make a sale</h3>
+              <p>Check availability, calculate the total, and subtract sold items.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span class="step">4</span>
+            <div>
+              <h3>Review stock</h3>
+              <p>Display the catalog alongside each product’s current quantity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container tech">
+        <div class="tech-inner">
+          <h2>Built with</h2>
+          <div class="tech-tags" aria-label="Project technologies">
+            <span>Python</span>
+            <span>MySQL</span>
+            <span>HTML &amp; CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong>StockWise</strong> — Inventory Management Project</p>
+      <p>Project overview and feature description</p>
+    </div>
+  </footer>
+</body>
+</html>

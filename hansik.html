@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>한식 · 한국 음식 문화</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{color-scheme:light;--ink:#202328;--muted:#687079;--green:#0047a0;--green-dark:#00367a;--mint:#edf2f6;--paper:#f8f8f5;--line:#e1e4e6;--white:#fff;--card:#fff;--soft:#f4f5f3;--hero-start:#faf7f4;--hero-end:#f1f5f9;--shadow:0 24px 65px rgba(38,52,66,.12);--glass:rgba(255,255,255,.84);
+--cheong:#0047a0;--jeok:#cd2e3a;--hwang:#d8c99a;--baek:#aaa99f;--heuk:#24272b;--on-cheong:#fff;--on-jeok:#fff;--on-hwang:#202328;--on-baek:#202328;--on-heuk:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ink:#f3f2ef;--muted:#aaaeb3;--green:#8daed4;--green-dark:#b7cae4;--mint:#202a38;--paper:#151719;--line:#34383c;--white:#202326;--card:#1b1e21;--soft:#24272a;--hero-start:#211a1b;--hero-end:#18202a;--shadow:0 24px 65px rgba(0,0,0,.32);--glass:rgba(27,30,33,.84);--cheong:#8daed4;--jeok:#d96b73;--hwang:#cdbf91;--baek:#b0afa7;--heuk:#9a9da1;--on-cheong:#151719;--on-jeok:#151719;--on-hwang:#151719;--on-baek:#151719;--on-heuk:#151719;}}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#f3f2ef;--muted:#aaaeb3;--green:#8daed4;--green-dark:#b7cae4;--mint:#202a38;--paper:#151719;--line:#34383c;--white:#202326;--card:#1b1e21;--soft:#24272a;--hero-start:#211a1b;--hero-end:#18202a;--shadow:0 24px 65px rgba(0,0,0,.32);--glass:rgba(27,30,33,.84);--cheong:#8daed4;--jeok:#d96b73;--hwang:#cdbf91;--baek:#b0afa7;--heuk:#9a9da1;--on-cheong:#151719;--on-jeok:#151719;--on-hwang:#151719;--on-baek:#151719;--on-heuk:#151719;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;word-break:keep-all;overflow-x:hidden;transition:background-color .18s,color .18s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.korean-watermark{position:fixed;inset:0;width:100vw;height:100vh;aspect-ratio:auto;z-index:0;object-fit:contain;opacity:.035;filter:saturate(.8) contrast(.9);pointer-events:none;user-select:none}
+@media (min-width:1000px){.korean-watermark{opacity:.045}}
+@media (max-width:620px){.korean-watermark{inset:0;width:100vw;height:100vh;opacity:.028}}
+:root[data-theme="light"] .korean-watermark{opacity:.045}
+:root[data-theme="light"] .korean-watermark{filter:saturate(.9) contrast(.95)}
+@media (prefers-reduced-motion:no-preference){.korean-watermark{transform:translateY(0);transition:opacity .5s ease}}
+:root[data-theme="dark"] .korean-watermark{opacity:.022}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+h1,h2,h3,p{margin-top:0}
+button{font-family:inherit}
+.container{width:min(1100px,calc(100% - 40px));margin:0 auto}
+.c-cheong{--c:var(--cheong);--on:var(--on-cheong)}.c-jeok{--c:var(--jeok);--on:var(--on-jeok)}.c-hwang{--c:var(--hwang);--on:var(--on-hwang)}.c-baek{--c:var(--baek);--on:var(--on-baek)}.c-heuk{--c:var(--heuk);--on:var(--on-heuk)}
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:11px;font-size:1.1rem;font-weight:800;letter-spacing:-.03em}
+.brand-mark{display:grid;width:38px;height:38px;place-items:center;border-radius:12px;background:var(--green);color:var(--white);font-size:1.2rem}
+.nav-links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:.92rem;font-weight:600}
+.nav-links a:hover{color:var(--green)}
+.tbtn{min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);cursor:pointer;font-size:.84rem;font-weight:700}
+.tbtn:hover{border-color:var(--green);color:var(--green)}
+.nav-links .tbtn+.tbtn{margin-left:-10px}
+/* hero */
+.hero{padding:76px 0 84px;background:radial-gradient(ellipse at 86% 18%,rgba(205,46,58,.09),transparent 24%),radial-gradient(ellipse at 14% 82%,rgba(0,71,160,.09),transparent 28%),linear-gradient(135deg,var(--hero-start),var(--hero-end) 62%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}
+h1{max-width:640px;margin-bottom:20px;font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.12;letter-spacing:-.05em}
+.hero-copy{max-width:540px;margin-bottom:28px;color:var(--muted);font-size:1.08rem}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:8px;background:var(--green);color:var(--white);font-size:.94rem;font-weight:700;transition:background .16s,transform .16s}
+.button:hover{background:var(--green-dark);transform:translateY(-1px)}
+.dashboard{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow)}
+.dashboard-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.dashboard-title{margin:0;font-size:.96rem;font-weight:800}
+.status{padding:5px 10px;border-radius:999px;background:var(--mint);color:var(--green);font-size:.72rem;font-weight:700;white-space:nowrap}
+.hero-mid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;margin-bottom:14px}
+.art-tile{display:grid;place-items:center;min-height:150px;padding:14px;border-radius:14px;background:var(--mint);color:color-mix(in srgb,var(--c,var(--green)) 70%,var(--ink))}
+.art-tile svg{width:100%;max-width:150px;height:auto}
+.stats{display:grid;grid-template-columns:1fr;gap:12px}
+.stats.three{grid-template-columns:repeat(3,1fr);margin-top:20px}
+.stat{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.stat-label{display:block;margin-bottom:4px;color:var(--muted);font-size:.76rem}
+.stat-value{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;line-height:1.2}
+.stat-value.sm{font-size:.95rem;font-weight:700;letter-spacing:0;line-height:1.45}
+.inventory-list{overflow:hidden;border:1px solid var(--line);border-radius:12px}
+.inventory-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font-size:.8rem;text-align:left}
+.inventory-row:last-child{border-bottom:0}
+button.inventory-row{cursor:pointer;transition:background .16s}
+button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:var(--mint)}
+.inventory-head{background:var(--soft);color:var(--muted);font-size:.7rem;font-weight:700}
+.product{display:flex;align-items:center;font-weight:700}
+.quantity{max-width:12em;color:var(--muted);text-align:right}
+.dot{display:inline-block;flex:none;width:9px;height:9px;margin-right:9px;border-radius:50%;background:var(--c)}
+/* sections */
+.section{padding:82px 0}
+.alt{background:var(--white)}
+.section-heading{max-width:650px;margin:0 auto 38px;text-align:center}
+.eyebrow{margin:0 0 14px;color:var(--green);font-size:.8rem;font-weight:800;letter-spacing:.08em}
+.section-heading h2,.about-grid h2{margin-bottom:12px;font-size:clamp(2rem,4vw,2.8rem);line-height:1.2;letter-spacing:-.045em}
+.section-heading p:last-child{margin-bottom:0;color:var(--muted)}
+/* dish explorer */
+.explorer{display:grid;grid-template-columns:280px 1fr;padding:0;overflow:hidden}
+.dish-list{display:grid;align-content:start;gap:4px;padding:10px;border-right:1px solid var(--line);background:var(--soft)}
+.dish-btn{display:flex;align-items:center;gap:2px;padding:12px 14px;border:0;border-radius:10px;background:none;color:inherit;font-size:1rem;text-align:left;cursor:pointer;transition:background .16s}
+.dish-btn:hover{background:var(--mint)}
+.dish-btn[aria-pressed="true"]{background:var(--white);box-shadow:0 0 0 1px var(--line)}
+.dish-btn b{display:block;font-size:.95rem}
+.dish-btn small{color:var(--muted);font-size:.78rem}
+.dish{display:grid;grid-template-columns:200px 1fr;align-items:start;gap:30px;padding:32px}
+.dish .art-tile{min-height:200px}
+.dish h3{margin-bottom:8px;font-size:1.7rem;letter-spacing:-.04em;line-height:1.25}
+.dish p{margin-bottom:0;color:var(--muted)}
+/* five colors */
+.ribbon{display:flex;height:10px;margin-bottom:16px;border-radius:99px;overflow:hidden}
+.ribbon i{flex:1;background:var(--c)}
+.features{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.feature-card{padding:23px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.alt .feature-card,.alt .mcard{background:var(--soft)}
+.swatch{display:grid;place-items:center;width:60px;height:60px;margin-bottom:18px;border-radius:16px;background:var(--c);color:var(--on);font-size:1.8rem;font-weight:800}
+.feature-card p{margin:0;color:var(--muted);font-size:.88rem}
+.feature-card p::first-line{color:var(--ink);font-weight:700}
+/* etiquette */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:start;gap:72px}
+.about-grid>div:first-child{position:sticky;top:100px}
+.about-grid p{color:var(--muted)}
+.workflow{display:grid;gap:16px}
+.workflow-item{display:flex;gap:15px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.workflow-item:last-child{padding-bottom:0;border-bottom:0}
+.step{flex:0 0 32px;display:grid;width:32px;height:32px;place-items:center;border-radius:50%;background:var(--mint);color:var(--green);font-size:.83rem;font-weight:800}
+.workflow .step::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--c)}
+.workflow-item h3{margin-bottom:3px;font-size:1.02rem}
+.workflow-item p{margin-bottom:0;font-size:.88rem}
+/* fermentation */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin:0;padding:0;list-style:none}
+.timeline li{position:relative;padding-top:56px}
+.timeline .step{position:absolute;top:0;left:0;width:40px;height:40px;background:var(--green);color:var(--white);font-size:.95rem}
+.timeline li:not(:last-child)::after{content:"";position:absolute;top:19px;left:52px;right:-16px;height:2px;background:linear-gradient(90deg,var(--green),var(--line))}
+.timeline h3{margin-bottom:6px;font-size:1.2rem}
+.timeline p{margin:0;color:var(--muted);font-size:.9rem}
+/* menu */
+.hint{margin:-16px 0 22px;color:var(--muted);font-size:.86rem;text-align:center}
+.mtabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:34px}
+.mtab{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:99px;background:var(--white);color:var(--ink);font-size:.88rem;font-weight:700;cursor:pointer;transition:background .16s,color .16s,border-color .16s}
+.mtab:hover{border-color:var(--green);color:var(--green)}
+.mtab[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--white)}
+.mcat+.mcat{margin-top:56px}
+.mhead{display:flex;align-items:center;gap:16px}
+.mhead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.mhead .art{display:grid;place-items:center;flex:none;width:60px;height:60px;padding:10px;border-radius:16px;background:var(--mint);color:color-mix(in srgb,var(--c) 70%,var(--ink))}
+.mhead svg{width:100%;height:100%}
+.mhead h3{margin:0;font-size:1.5rem;letter-spacing:-.03em}
+.mhead p{margin:0;color:var(--muted);font-size:.88rem}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:100px 22px;padding-top:96px}
+.dcard{position:relative;padding:0 20px 20px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 16%,var(--card)),var(--card) 70%);cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.dcard:hover{border-color:var(--c);box-shadow:0 22px 44px -22px color-mix(in srgb,var(--c) 80%,transparent)}
+.dcard.on{border-color:var(--green);box-shadow:0 0 0 2px var(--green)}
+.shot{display:none;position:relative;z-index:2;margin:-82px -10px -4px;aspect-ratio:4/3}
+.has-3d .shot{display:block}
+.shot canvas{display:block;width:100%;height:100%;transform-origin:50% 70%;transform:translateY(calc(var(--lift,0)*-14px)) scale(calc(1 + var(--lift,0)*.07));filter:drop-shadow(0 calc(8px + var(--lift,0)*14px) calc(10px + var(--lift,0)*10px) rgba(20,30,25,.22))}
+.mi{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;width:100%;padding:6px 0 0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.mi b{font-size:1.1rem;letter-spacing:-.02em}
+.mi em{grid-row:1;grid-column:2;padding:3px 11px;border-radius:99px;background:var(--mint);color:var(--green);font-style:normal;font-size:.84rem;font-weight:800;white-space:nowrap}
+.mi span{grid-column:1/-1;color:var(--muted);font-size:.86rem;line-height:1.5}
+.mi[aria-pressed="true"] b::after{content:" ✓";color:var(--green)}
+.dcard.on .mi em{background:var(--green);color:var(--white)}
+@media (max-width:1000px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.mgrid{grid-template-columns:1fr;gap:92px}.shot{margin-top:-74px}}
+.mnote{margin:28px 0 0;color:var(--muted);font-size:.85rem;text-align:center}
+.tally{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:40;transform:translateX(-50%);display:flex;align-items:center;gap:16px;width:max-content;max-width:calc(100% - 28px);padding:10px 10px 10px 20px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow);font-size:.9rem}
+.tally[hidden]{display:none}
+.tally strong{font-size:1.1rem;letter-spacing:-.02em}
+.site-footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.tally-on .site-footer{padding-bottom:96px}
+.footer-inner{display:flex;justify-content:space-between;gap:24px}
+.footer-inner p{margin:0}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:no-preference){
+.hero-text>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero-text>:nth-child(2){animation-delay:.08s}.hero-text>:nth-child(3){animation-delay:.16s}
+.hero-card{animation:rise .8s .2s cubic-bezier(.2,.7,.2,1) both}
+.anim path,.anim rect,.anim circle,.anim ellipse{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s ease forwards}
+}
+@media (max-width:1000px){.features{grid-template-columns:repeat(3,1fr)}.menu{grid-template-columns:repeat(2,1fr)}.nav-links a{display:none}.nav-links .tbtn+.tbtn{margin-left:0}}
+@media (max-width:850px){
+.hero-grid,.about-grid,.explorer,.dish{grid-template-columns:1fr}.hero-grid,.about-grid{gap:38px}
+.hero{padding:58px 0}.about-grid>div:first-child{position:static}
+.dish-list{grid-template-columns:repeat(2,1fr);border-right:0;border-bottom:1px solid var(--line)}
+.dish{gap:22px;padding:24px}.dish .art-tile{min-height:150px}
+.timeline{grid-template-columns:1fr;gap:26px}
+.timeline li{padding:0 0 0 60px}
+.timeline li:not(:last-child)::after{top:44px;bottom:-26px;left:19px;right:auto;width:2px;height:auto;background:linear-gradient(180deg,var(--green),var(--line))}
+.features{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){.menu{grid-template-columns:1fr}.stats.three{grid-template-columns:1fr}.footer-inner{flex-direction:column}}
+@media (max-width:560px){.container{width:min(100% - 28px,1100px)}.nav{min-height:64px}.section{padding:62px 0}.dashboard{padding:15px}.features{grid-template-columns:1fr}.inventory-row{gap:8px;padding:11px 9px}.brand span:last-child{display:none}.hero-mid{grid-template-columns:1fr}.dish-list{grid-template-columns:1fr}.tally{gap:10px;padding-left:14px;font-size:.82rem}}
+</style>
+</head>
+<body>
+<svg class="korean-watermark" viewBox="0 0 600 400" aria-hidden="true" focusable="false">
+  <rect width="600" height="400" fill="#fff"/>
+  <g transform="translate(300 200)">
+    <path d="M0-78A78 78 0 0 1 0 78A39 39 0 0 1 0 0A39 39 0 0 0 0-78" fill="#cd2e3a"/>
+    <path d="M0 78A78 78 0 0 1 0-78A39 39 0 0 1 0 0A39 39 0 0 0 0 78" fill="#0047a0"/>
+    <circle r="78" fill="none" stroke="#d4d7d1" stroke-width="2"/>
+  </g>
+  <g fill="#111" stroke="#111" stroke-width="13">
+    <g transform="translate(110 105) rotate(-33)"><path d="M-34 0h68M-34 20h68"/><path d="M-34-20h68"/></g>
+    <g transform="translate(490 105) rotate(33)"><path d="M-34-20h68M-34 0h68"/><path d="M-34 20h68"/></g>
+    <g transform="translate(110 295) rotate(33)"><path d="M-34-20h68M-34 0h68"/><path d="M-34 20h68"/></g>
+    <g transform="translate(490 295) rotate(-33)"><path d="M-34 0h68M-34 20h68"/><path d="M-34-20h68"/></g>
+  </g>
+</svg>
+<header class="site-header">
+  <nav class="nav container" aria-label="Sections">
+    <a class="brand" href="#home"><span class="brand-mark" id="mark" aria-hidden="true"></span><span data-i18n="brand"></span></a>
+    <div class="nav-links">
+      <a href="#sang" data-i18n="n1"></a><a href="#color" data-i18n="n2"></a><a href="#manner" data-i18n="n3"></a><a href="#jang" data-i18n="n4"></a><a href="#menu" data-i18n="n5"></a>
+      <button class="tbtn" id="lang" type="button" aria-label="Translate / 번역"></button>
+      <button class="tbtn" id="theme" type="button" aria-pressed="false"></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1 data-i18n="h1"></h1>
+      <p class="hero-copy" data-i18n="intro"></p>
+      <a class="button" href="#sang"><span data-i18n="cta"></span><span aria-hidden="true">&nbsp;→</span></a>
+    </div>
+    <div class="dashboard hero-card" id="hcard" role="group" aria-labelledby="htitle">
+      <div class="dashboard-top"><p class="dashboard-title" id="htitle"></p><span class="status" id="hpill"></span></div>
+      <div class="hero-mid"><div class="art-tile anim" id="hart" aria-hidden="true"></div><div class="stats" id="hstats"></div></div>
+      <div class="inventory-list" id="hlist"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sang">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow" data-i18n="n1"></p><h2 data-i18n="h2a"></h2><p data-i18n="lede_a"></p></div>
+    <div class="dashboard explorer"><div class="dish-list" id="plates" role="group"></div><article class="dish" id="detail" aria-live="polite"></article></div>
+  </div>
+</section>
+
+<section class="section alt" id="color">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow" data-i18n="n2"></p><h2 data-i18n="h2b"></h2><p data-i18n="lede_b"></p></div>
+    <div class="ribbon" aria-hidden="true"><i class="c-cheong"></i><i class="c-jeok"></i><i class="c-hwang"></i><i class="c-baek"></i><i class="c-heuk"></i></div>
+    <div class="features">
+      <article class="feature-card c-cheong"><span class="swatch">청</span><p data-i18n="f1"></p></article>
+      <article class="feature-card c-jeok"><span class="swatch">적</span><p data-i18n="f2"></p></article>
+      <article class="feature-card c-hwang"><span class="swatch">황</span><p data-i18n="f3"></p></article>
+      <article class="feature-card c-baek"><span class="swatch">백</span><p data-i18n="f4"></p></article>
+      <article class="feature-card c-heuk"><span class="swatch">흑</span><p data-i18n="f5"></p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="manner">
+  <div class="container about-grid">
+    <div><p class="eyebrow" data-i18n="n3"></p><h2 data-i18n="h2c"></h2><p data-i18n="lede_c"></p></div>
+    <div class="workflow">
+      <div class="workflow-item c-cheong"><span class="step"></span><div><h3 data-i18n="r1t"></h3><p data-i18n="r1d"></p></div></div>
+      <div class="workflow-item c-jeok"><span class="step"></span><div><h3 data-i18n="r2t"></h3><p data-i18n="r2d"></p></div></div>
+      <div class="workflow-item c-hwang"><span class="step"></span><div><h3 data-i18n="r3t"></h3><p data-i18n="r3d"></p></div></div>
+      <div class="workflow-item c-baek"><span class="step"></span><div><h3 data-i18n="r4t"></h3><p data-i18n="r4d"></p></div></div>
+      <div class="workflow-item c-heuk"><span class="step"></span><div><h3 data-i18n="r5t"></h3><p data-i18n="r5d"></p></div></div>
+      <div class="workflow-item c-cheong"><span class="step"></span><div><h3 data-i18n="r6t"></h3><p data-i18n="r6d"></p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="jang">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow" data-i18n="n4"></p><h2 data-i18n="h2d"></h2><p data-i18n="lede_d"></p></div>
+    <ol class="timeline">
+      <li><span class="step">1</span><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></li>
+      <li><span class="step">2</span><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></li>
+      <li><span class="step">3</span><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></li>
+      <li><span class="step">4</span><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="menu">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow" data-i18n="n5"></p><h2 data-i18n="h2e"></h2><p data-i18n="lede_e"></p></div>
+    <p class="hint" id="hint"></p>
+    <div class="mtabs" id="mtabs" role="group"></div>
+    <div class="menu" id="menuGrid"></div>
+    <p class="mnote" data-i18n="mnote"></p>
+  </div>
+</section>
+</main>
+
+<div class="tally" id="tally" hidden><span id="tcount"></span><strong id="ttotal"></strong><button class="tbtn" id="tclear" type="button"></button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<footer class="site-footer"><div class="container footer-inner"><p><strong data-i18n="title"></strong></p><p data-i18n="foot"></p></div></footer>
+
+<script>
+var T={ko:{
+brand:"한식",n1:"상차림",n2:"오방색",n3:"식사 예절",n4:"발효",n5:"메뉴",h2e:"한식당 메뉴판",lede_e:"한국 식당은 밥, 국, 반찬을 한 상에 내는 것이 기본입니다. 주문하면 밑반찬이 먼저 놓이고, 뒤이어 주 요리가 나옵니다.",mnote:"예시 메뉴이며 가격은 가상입니다. 기본 반찬은 보통 무료로 다시 채워 줍니다.",big:"한식",vert:"한 상 가득",
+h1:"밥상은 함께 차리고, 함께 먹는 이야기입니다",
+intro:"한식은 밥과 국을 중심으로 여러 가지 반찬을 한 상에 차려 나누어 먹는 식문화입니다. 발효의 시간과 계절의 재료, 그리고 함께 먹는 마음이 한 끼에 담겨 있습니다.",
+cta:"상차림 둘러보기",h2a:"어떤 음식이 궁금한가요?",lede_a:"맵고, 달고, 새콤하고, 구수한 일곱 가지 음식입니다. 이름을 눌러 이야기를 읽어 보세요.",
+h2b:"오방색, 음식에 담은 다섯 가지 색",lede_b:"전통 한식에는 고명으로 다섯 가지 색을 맞추는 지혜가 있습니다. 색마다 방위와 기운을 뜻합니다.",
+f1:"동쪽 · 나무의 기운<br>미나리, 쑥갓, 오이",f2:"남쪽 · 불의 기운<br>고추, 대추, 당근",f3:"중앙 · 흙의 기운<br>달걀지단, 황포묵",f4:"서쪽 · 쇠의 기운<br>쌀, 도라지, 무",f5:"북쪽 · 물의 기운<br>표고버섯, 김, 고사리",
+h2c:"함께 먹는 법",lede_c:"식사 예절은 같은 상에 앉은 사람을 존중하는 마음에서 시작됩니다.",
+r1t:"어른이 먼저",r1d:"가장 연장자가 수저를 들면 따라서 식사를 시작합니다.",
+r2t:"밥과 국은 숟가락으로",r2d:"젓가락은 반찬을 집을 때 씁니다. 밥그릇은 들지 않고 상에 둡니다.",
+r3t:"술과 물은 두 손으로",r3d:"다른 사람의 잔은 두 손으로 채우고, 내 잔도 두 손으로 받습니다.",
+r4t:"가운데 음식은 함께",r4d:"찌개와 반찬은 상 가운데 두고 함께 먹습니다. 덜어 먹을 때는 깨끗한 수저를 씁니다.",
+r5t:"밥에 수저를 꽂지 않기",r5d:"제사상의 모습을 떠올리게 하므로 피합니다.",
+r6t:"감사 인사",r6d:"식사 전에는 “잘 먹겠습니다”, 식사 후에는 “잘 먹었습니다”라고 말합니다.",
+h2d:"발효, 한식의 바탕",lede_d:"한식의 깊은 맛은 항아리 속에서 계절을 지나며 만들어집니다.",
+s1t:"메주",s1d:"삶은 콩을 찧어 덩어리로 빚어 말린 뒤, 늦가을과 겨울 동안 띄웁니다.",
+s2t:"간장과 된장",s2d:"메주를 소금물에 담그면 국물은 간장이 되고, 건진 덩어리는 된장이 됩니다.",
+s3t:"고추장",s3d:"고춧가루, 찹쌀, 메줏가루를 섞어 숙성시키면 달고 매콤한 붉은 장이 됩니다.",
+s4t:"김장",s4d:"늦가을에 가족과 이웃이 모여 겨우내 먹을 김치를 함께 담급니다. 2013년 유네스코 인류무형문화유산으로 등재되었습니다.",
+foot:"한국 음식 문화를 소개하는 짧은 안내입니다. 음식과 예절은 지역과 가정에 따라 조금씩 다를 수 있습니다.",
+grp:"음식 목록",title:"한식 · 한국 음식 문화"},
+en:{
+brand:"Hansik",n1:"Table",n2:"Five Colors",n3:"Etiquette",n4:"Fermentation",n5:"Menu",h2e:"A Korean restaurant menu",lede_e:"A Korean meal is built around rice, soup, and side dishes served together. Once you order, small side dishes (banchan) arrive first, followed by the main dishes.",mnote:"A sample menu with fictional prices. Basic side dishes are usually refilled for free.",big:"Hansik",vert:"A Full Table",
+h1:"A Korean meal is a story set and shared together",
+intro:"Hansik is a food culture built around rice and soup, with many side dishes laid out on one table to share. The patience of fermentation, seasonal ingredients, and the spirit of eating together all come with each meal.",
+cta:"Explore the table",h2a:"What would you like to know about?",lede_a:"Seven dishes that are spicy, sweet, tangy, and deeply savory. Select a name to read its story.",
+h2b:"Obangsaek: five colors on the plate",lede_b:"Traditional Korean cooking balances five colors in its garnishes. Each color stands for a direction and an element.",
+f1:"East · Wood<br>minari, crown daisy, cucumber",f2:"South · Fire<br>chili, jujube, carrot",f3:"Center · Earth<br>egg strips, yellow mung jelly",f4:"West · Metal<br>rice, bellflower root, radish",f5:"North · Water<br>shiitake, seaweed, bracken",
+h2c:"How we eat together",lede_c:"Table manners begin with respect for the people sitting at the same table.",
+r1t:"Elders first",r1d:"Wait until the eldest person lifts their spoon, then begin.",
+r2t:"Spoon for rice and soup",r2d:"Chopsticks are for side dishes. Leave the rice bowl on the table instead of lifting it.",
+r3t:"Pour and receive with two hands",r3d:"Fill others’ cups with both hands, and receive your own the same way.",
+r4t:"Shared dishes in the middle",r4d:"Stews and sides sit in the center for everyone. Use a clean spoon when serving yourself.",
+r5t:"Never stand utensils in rice",r5d:"It recalls an ancestral memorial table, so it is avoided.",
+r6t:"Words of thanks",r6d:"Say “jal meokgesseumnida” before eating and “jal meogeosseumnida” after.",
+h2d:"Fermentation, the foundation",lede_d:"The deep flavor of Korean food is made in earthenware jars as the seasons pass.",
+s1t:"Meju",s1d:"Boiled soybeans are pounded, shaped into blocks, dried, and left to ferment through late autumn and winter.",
+s2t:"Ganjang and doenjang",s2d:"Soaked in brine, the liquid becomes soy sauce and the remaining solids become soybean paste.",
+s3t:"Gochujang",s3d:"Chili powder, glutinous rice, and meju powder are mixed and aged into a sweet, spicy red paste.",
+s4t:"Gimjang",s4d:"In late autumn, families and neighbors gather to make kimchi for the winter. It was inscribed on UNESCO’s Intangible Cultural Heritage list in 2013.",
+foot:"A short introduction to Korean food culture. Dishes and manners vary a little by region and household.",
+grp:"Dishes",title:"Hansik · Korean Food Culture"}};
+var D=[
+{c:"jeok",ko:{k:"김치",e:"발효 채소",t:"소금에 절인 배추나 무를 고춧가루, 마늘, 생강, 젓갈로 버무려 발효시킨 음식입니다. 거의 모든 끼니에 오르며, 지역과 계절에 따라 수백 가지 종류가 있습니다.",f:[["맛","새콤하고 매콤하고 감칠맛이 납니다"],["먹는 법","반찬으로, 또는 찌개와 볶음밥의 재료로"],["핵심","발효"]]},
+ en:{k:"Kimchi",e:"fermented vegetables",t:"Salted napa cabbage or radish tossed with chili flakes, garlic, ginger, and fermented seafood, then left to ferment. It appears at almost every meal, in hundreds of regional and seasonal varieties.",f:[["Taste","tangy, spicy, deeply savory"],["How to eat","as a side, or cooked into stews and fried rice"],["Key idea","fermentation"]]}},
+{c:"hwang",ko:{k:"비빔밥",e:"비벼 먹는 밥",t:"따뜻한 밥 위에 나물, 달걀, 고기를 올리고 고추장을 넣어 비벼 먹습니다. 전주가 특히 유명합니다.",f:[["맛","고소하고 짭짤하며 은은하게 매콤합니다"],["먹는 법","한 그릇에 모두 넣고 비벼서"],["핵심","색과 식감의 균형"]]},
+ en:{k:"Bibimbap",e:"mixed rice bowl",t:"Warm rice topped with seasoned vegetables, egg, and meat, mixed together with gochujang. The city of Jeonju is especially famous for it.",f:[["Taste","nutty, savory, gently spicy"],["How to eat","mix everything together in one bowl"],["Key idea","balance of color and texture"]]}},
+{c:"jeok",ko:{k:"떡볶이",e:"길거리 간식",t:"쫄깃한 가래떡을 달콤매콤한 고추장 양념에 졸인 음식입니다. 어묵과 대파를 함께 넣기도 합니다.",f:[["맛","달고 맵고 쫄깃합니다"],["먹는 법","뜨겁게, 한 팬에서 함께"],["핵심","일상의 간식"]]},
+ en:{k:"Tteokbokki",e:"street snack",t:"Chewy rice cakes simmered in a sweet and spicy gochujang sauce, often with fish cakes and scallions.",f:[["Taste","sweet, spicy, chewy"],["How to eat","hot, shared from one pan"],["Key idea","an everyday snack"]]}},
+{c:"heuk",ko:{k:"불고기",e:"양념 소고기",t:"얇게 썬 소고기를 간장, 설탕, 마늘, 배즙에 재워 구워 먹습니다. 이름은 ‘불에 구운 고기’라는 뜻입니다.",f:[["맛","달콤하고 불향이 납니다"],["먹는 법","밥, 상추쌈과 함께"],["핵심","양념이 맛을 좌우합니다"]]},
+ en:{k:"Bulgogi",e:"marinated beef",t:"Thinly sliced beef marinated in soy sauce, sugar, garlic, and pear juice, then grilled. The name means “fire meat.”",f:[["Taste","sweet with a smoky char"],["How to eat","with rice and lettuce wraps"],["Key idea","the marinade makes the dish"]]}},
+{c:"cheong",ko:{k:"잡채",e:"당면 볶음",t:"고구마 전분으로 만든 당면을 여러 채소와 함께 참기름에 볶은 요리입니다. 생일, 명절, 혼례 같은 잔칫상에 올랐습니다.",f:[["맛","고소하고 은은하게 달콤합니다"],["먹는 법","따뜻하게 또는 실온으로"],["핵심","잔치 음식"]]},
+ en:{k:"Japchae",e:"glass noodle stir-fry",t:"Sweet potato starch noodles stir-fried in sesame oil with many vegetables. It is a fixture of birthdays, holidays, and weddings.",f:[["Taste","nutty and lightly sweet"],["How to eat","warm or at room temperature"],["Key idea","a celebration dish"]]}},
+{c:"hwang",ko:{k:"된장찌개",e:"된장 국물 요리",t:"된장을 풀어 두부, 애호박, 감자를 넣고 끓인 찌개입니다. 멸치 육수나 조개를 더하기도 합니다.",f:[["맛","구수하고 짭짤합니다"],["먹는 법","뚝배기째 밥과 함께"],["핵심","집밥"]]},
+ en:{k:"Doenjang jjigae",e:"soybean paste stew",t:"A stew of doenjang with tofu, zucchini, and potato, sometimes deepened with anchovy broth or clams.",f:[["Taste","earthy and salty"],["How to eat","straight from the clay pot, with rice"],["Key idea","home cooking"]]}},
+{c:"cheong",ko:{k:"냉면",e:"차가운 국수",t:"쫄깃한 메밀 면을 시원한 육수에 말거나 매운 양념에 비벼 먹습니다. 여름철 별미로 사랑받습니다.",f:[["맛","시원하고 새콤하며 담백합니다"],["먹는 법","물냉면, 비빔냉면"],["핵심","계절의 맛"]]},
+ en:{k:"Naengmyeon",e:"cold noodles",t:"Chewy buckwheat noodles served in an icy broth or tossed in a spicy sauce. A beloved summer treat.",f:[["Taste","cold, tangy, clean"],["How to eat","mul-naengmyeon (broth) or bibim-naengmyeon (spicy)"],["Key idea","a taste of the season"]]}}
+];
+var G='<g fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">';
+var BW='<path d="M18 62h84c0 22-18 38-42 38S18 84 18 62z"/><path d="M46 104h28"/>';
+var ARTS={
+kimchi:'<path d="M36 40h48v8c10 6 14 18 14 30 0 14-8 22-20 22H42c-12 0-20-8-20-22 0-12 4-24 14-30z"/><path fill="none" d="M32 40h56M46 66c8-8 16 8 24 0M46 82c8-8 16 8 24 0"/>',
+bibim:BW+'<circle cx="60" cy="46" r="10"/><circle cx="60" cy="46" r="3.5" fill-opacity="1"/><path fill="none" d="M26 58c4-12 12-12 16 0M78 58c4-12 12-12 16 0"/>',
+tteok:BW+'<rect x="32" y="34" width="14" height="30" rx="7" transform="rotate(-18 39 49)"/><rect x="53" y="30" width="14" height="32" rx="7"/><rect x="74" y="34" width="14" height="30" rx="7" transform="rotate(18 81 49)"/>',
+bulgo:'<ellipse cx="60" cy="82" rx="44" ry="14"/><path fill="none" d="M30 76c6-18 22-18 28-4M54 74c6-18 24-18 30-2M44 30c-4 6 4 8 0 14M64 26c-4 6 4 8 0 14"/>',
+japchae:BW+'<path fill="none" d="M26 58c8-14 12 2 20-8s12 6 20-6 12 8 20-4"/>',
+doen:'<path d="M24 56h72c0 24-14 40-36 40S24 80 24 56z"/><path fill="none" d="M14 56h92M44 28c-4 6 4 8 0 14M62 24c-4 6 4 8 0 14M80 28c-4 6 4 8 0 14"/>',
+naeng:BW+'<path fill="none" d="M28 58c10-10 16 4 26-6s16 4 26-6M72 18l18 38M82 16l18 38"/>',
+cup:'<path d="M32 46h46v30c0 14-10 24-23 24S32 90 32 76z"/><path fill="none" d="M78 54h8c10 0 10 20 0 20h-8M46 26c-4 6 4 8 0 14M62 26c-4 6 4 8 0 14"/>'};
+function art(k){return '<svg viewBox="0 0 120 120" aria-hidden="true">'+G+ARTS[k]+'</g></svg>'}
+var AK=["kimchi","bibim","tteok","bulgo","japchae","doen","naeng"];
+var M=[
+{c:"hwang",a:"bibim",ko:["밥","밥은 한 끼의 중심입니다."],en:["Rice","Rice is the center of every meal."],it:[
+["비빔밥","나물, 달걀, 고추장","Bibimbap","seasoned vegetables, egg, gochujang",9000],
+["김치볶음밥","잘 익은 김치와 달걀","Kimchi fried rice","aged kimchi topped with a fried egg",8500],
+["돌솥밥","뜨거운 솥에 지은 밥과 숭늉","Stone-pot rice","rice cooked in a hot pot, with scorched-rice tea",12000]]},
+{c:"jeok",a:"doen",ko:["찌개와 국","따뜻한 국물이 늘 밥과 함께 나옵니다."],en:["Stews & Soups","Something warm and brothy always comes with the rice."],it:[
+["김치찌개","신김치와 돼지고기","Kimchi jjigae","aged kimchi and pork",9000],
+["된장찌개","두부, 애호박, 감자","Doenjang jjigae","tofu, zucchini, potato",8500],
+["순두부찌개","부드러운 순두부와 해물","Soft tofu stew","silken tofu and seafood",9500],
+["설렁탕","소뼈를 오래 끓인 하얀 국물","Seolleongtang","milky beef-bone broth",13000]]},
+{c:"heuk",a:"bulgo",ko:["구이","불 앞에 둘러앉아 함께 굽습니다."],en:["Grilled","Gathered around the grill, everyone cooks together."],it:[
+["불고기","달콤한 양념 소고기","Bulgogi","sweet marinated beef",16000],
+["삼겹살","쌈채소, 쌈장, 마늘과 함께","Samgyeopsal","pork belly with lettuce, ssamjang, garlic",15000],
+["소갈비","간장 양념 갈비구이","Galbi","soy-marinated short ribs",28000]]},
+{c:"cheong",a:"naeng",ko:["면","긴 면은 긴 수명을 뜻해 잔치에도 오릅니다."],en:["Noodles","Long noodles stand for long life, so they appear at celebrations."],it:[
+["냉면","메밀 면, 차가운 육수","Naengmyeon","buckwheat noodles in cold broth",11000],
+["잡채","당면과 채소 볶음","Japchae","glass noodles with vegetables",12000],
+["칼국수","손으로 썬 면과 따뜻한 국물","Kalguksu","knife-cut noodles in warm broth",9000]]},
+{c:"baek",a:"tteok",ko:["분식과 곁들임","나눠 먹기 좋은 가벼운 음식입니다."],en:["Snacks & Shares","Light dishes made for sharing."],it:[
+["떡볶이","매콤달콤한 가래떡","Tteokbokki","spicy-sweet rice cakes",6000],
+["김밥","단무지, 달걀, 시금치를 김으로 만 밥","Gimbap","rice rolls with pickled radish, egg, spinach",5000],
+["해물파전","바삭한 해물 부침개","Haemul pajeon","crispy seafood and scallion pancake",13000]]},
+{c:"jeok",a:"cup",ko:["음료와 후식","식사 뒤에는 달고 시원한 음료로 마무리합니다."],en:["Drinks & Dessert","A sweet, cool drink traditionally closes the meal."],it:[
+["식혜","엿기름으로 만든 단 음료","Sikhye","sweet malted rice drink",3000],
+["수정과","계피와 생강을 달인 음료","Sujeonggwa","cinnamon-ginger punch",3000],
+["막걸리","쌀로 빚은 탁주","Makgeolli","milky rice wine",6000]]}
+];
+
+var U={ko:{tog:["다크 모드","라이트 모드"],hint:"카드를 눌러 내 상차림에 담고, 마우스를 올려 보세요.",tbl:"내 상차림",clr:"비우기",all:"전체"},en:{tog:["Dark mode","Light mode"],hint:"Select a card to add it to your table. Hover to bring the dish to life.",tbl:"Your table",clr:"Clear",all:"All"}};
+function $(i){return document.getElementById(i)}
+var lang="ko",sel=0,hs=0,hp=false,picked={},HL=[0,1,2,3],root=document.documentElement,mq=matchMedia("(prefers-color-scheme:dark)"),RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+try{var s=localStorage.getItem("lang");if(s==="en"||s==="ko")lang=s;var th=localStorage.getItem("theme");if(th==="dark"||th==="light")root.dataset.theme=th}catch(e){}
+function st(l,v,sm){return '<div class="stat"><span class="stat-label">'+l+'</span><span class="stat-value'+(sm?' sm':'')+'">'+v+'</span></div>'}
+function put(el,k){el.innerHTML=art(k);el.querySelectorAll("path,rect,circle,ellipse").forEach(function(n){n.setAttribute("pathLength","1")})}
+function fmt(p){return lang==="ko"?p.toLocaleString("ko-KR")+"원":"₩"+p.toLocaleString("en-US")}
+function dark(){var a=root.dataset.theme;return a?a==="dark":mq.matches}
+function setTheme(){var d=dark();$("theme").textContent=U[lang].tog[d?1:0];$("theme").setAttribute("aria-pressed",String(d))}
+function heroSet(j){hs=j;var d=D[HL[j]],a=$("hart");document.querySelectorAll("#hlist button").forEach(function(b,k){b.setAttribute("aria-pressed",String(k===j))});a.className="art-tile anim c-"+d.c;put(a,AK[HL[j]])}
+function renderHero(){
+  var t=T[lang],n=0;M.forEach(function(m){n+=m.it.length});
+  $("htitle").textContent=t.title;$("hpill").textContent=t.vert;
+  $("hstats").innerHTML=st(t.grp,D.length)+st(t.n5,n);
+  $("hlist").innerHTML='<div class="inventory-row inventory-head"><span>'+t.grp+'</span><span>'+D[0][lang].f[2][0]+'</span></div>'+HL.map(function(d,j){var o=D[d][lang];return '<button type="button" class="inventory-row" data-j="'+j+'" aria-pressed="false"><span class="product"><i class="dot c-'+D[d].c+'"></i>'+o.k+'</span><span class="quantity">'+o.f[2][1]+'</span></button>'}).join("");
+  heroSet(hs);
+}
+function buildPlates(){
+  $("plates").innerHTML=D.map(function(x,i){var p=x[lang];return '<button type="button" class="dish-btn c-'+x.c+'" data-i="'+i+'" aria-pressed="false"><i class="dot"></i><span><b>'+p.k+'</b><small>'+p.e+'</small></span></button>'}).join("");
+}
+function selDish(i){
+  sel=i;document.querySelectorAll("#plates button").forEach(function(b,j){b.setAttribute("aria-pressed",String(j===i))});
+  var d=D[i],o=d[lang],x=$("detail");x.className="dish c-"+d.c;
+  x.innerHTML='<div class="art-tile anim" id="dart" aria-hidden="true"></div><div><h3>'+o.k+' · '+o.e+'</h3><p>'+o.t+'</p><div class="stats three">'+o.f.map(function(a){return st(a[0],a[1],1)}).join("")+'</div></div>';
+  put($("dart"),AK[i]);
+}
+var mcat=-1;
+function renderMenu(){
+  var o=lang==="ko"?0:2,u=U[lang];
+  $("mtabs").innerHTML=['<button type="button" class="mtab" data-c="-1" aria-pressed="'+(mcat<0)+'">'+u.all+'</button>'].concat(M.map(function(m,ci){return '<button type="button" class="mtab" data-c="'+ci+'" aria-pressed="'+(mcat===ci)+'">'+m[lang][0]+'</button>'})).join("");
+  $("menuGrid").innerHTML=M.map(function(m,ci){
+    var it=m.it.map(function(i,ii){var k=ci+"-"+ii,on=!!picked[k];return '<article class="dcard c-'+m.c+(on?' on':'')+'" data-k="'+k+'"><div class="shot" data-k="'+MK[ci][ii]+'"><canvas width="480" height="360" role="img" aria-label="'+i[o]+'"></canvas></div><button type="button" class="mi" aria-pressed="'+on+'"><b>'+i[o]+'</b><em>'+fmt(i[4])+'</em><span>'+i[o+1]+'</span></button></article>'}).join("");
+    return '<div class="mcat c-'+m.c+'"'+(mcat>=0&&mcat!==ci?' hidden':'')+'><div class="mhead"><div class="art">'+art(m.a)+'</div><div><h3>'+m[lang][0]+'</h3><p>'+m[lang][1]+'</p></div></div><div class="mgrid">'+it+'</div></div>';
+  }).join("");
+}
+function renderTally(){
+  var n=0,sum=0,u=U[lang];
+  for(var k in picked){if(picked[k]){var a=k.split("-");n++;sum+=M[a[0]].it[a[1]][4]}}
+  $("tally").hidden=!n;document.body.classList.toggle("tally-on",n>0);
+  $("tcount").textContent=u.tbl+" · "+(lang==="ko"?n+"가지":n+(n===1?" dish":" dishes"));
+  $("ttotal").textContent=fmt(sum);$("tclear").textContent=u.clr;
+}
+function apply(){
+  var t=T[lang];root.lang=lang;document.title=t.title;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){el.innerHTML=t[el.getAttribute("data-i18n")]});
+  $("mark").textContent=t.brand.charAt(0);$("lang").textContent=lang==="ko"?"EN":"한국어";$("hint").textContent=U[lang].hint;
+  setTheme();buildPlates();selDish(sel);renderHero();renderMenu();if(R3)R3.bind();renderTally();
+}
+$("lang").addEventListener("click",function(){lang=lang==="ko"?"en":"ko";try{localStorage.setItem("lang",lang)}catch(e){}apply()});
+$("theme").addEventListener("click",function(){var d=dark()?"light":"dark";root.dataset.theme=d;try{localStorage.setItem("theme",d)}catch(e){}setTheme()});
+$("plates").addEventListener("click",function(e){var b=e.target.closest("button");if(b)selDish(+b.dataset.i)});
+$("hlist").addEventListener("click",function(e){var b=e.target.closest("button");if(b)heroSet(+b.dataset.j)});
+$("menuGrid").addEventListener("click",function(e){var c=e.target.closest(".dcard");if(!c)return;var k=c.dataset.k;picked[k]=!picked[k];c.classList.toggle("on",!!picked[k]);c.querySelector(".mi").setAttribute("aria-pressed",String(!!picked[k]));renderTally()});
+$("mtabs").addEventListener("click",function(e){var b=e.target.closest(".mtab");if(!b)return;mcat=+b.dataset.c;document.querySelectorAll("#mtabs .mtab").forEach(function(x){x.setAttribute("aria-pressed",String(+x.dataset.c===mcat))});document.querySelectorAll("#menuGrid .mcat").forEach(function(x,n){x.hidden=mcat>=0&&mcat!==n})});
+$("tclear").addEventListener("click",function(){picked={};renderMenu();if(R3)R3.bind();renderTally()});
+var hc=$("hcard");hc.addEventListener("mouseenter",function(){hp=true});hc.addEventListener("mouseleave",function(){hp=false});hc.addEventListener("focusin",function(){hp=true});hc.addEventListener("focusout",function(){hp=false});
+if(!RM)setInterval(function(){if(!hp&&!document.hidden)heroSet((hs+1)%HL.length)},3800);
+/* 3D food renders: one model per menu item, drawn by a shared WebGL renderer */
+var R3=null,MK=[["bibim","kfr","dolsot"],["kjj","doen","sundubu","seol"],["bulgo","sam","galbi"],["naeng","jap","kal"],["tteok","gim","paj"],["sik","suj","mak"]];
+function init3D(){
+ if(!window.THREE)return;
+ var T3=THREE,W=480,H=360,rd,CL=Math.cos,SN=Math.sin;
+ try{rd=new T3.WebGLRenderer({antialias:true,alpha:true})}catch(e){return}
+ rd.setPixelRatio(1);rd.setSize(W,H,false);rd.outputEncoding=T3.sRGBEncoding;rd.toneMapping=T3.ACESFilmicToneMapping;rd.toneMappingExposure=1.1;rd.shadowMap.enabled=true;rd.shadowMap.type=T3.PCFSoftShadowMap;
+ function cv(w,h,f){var c=document.createElement("canvas");c.width=w;c.height=h;f(c.getContext("2d"),w,h);var t=new T3.CanvasTexture(c);t.wrapS=t.wrapT=T3.RepeatWrapping;return t}
+ var ET=cv(512,256,function(c,w,h){var g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,"#aab6c2");g.addColorStop(.45,"#ebe4d8");g.addColorStop(1,"#5a4a3c");c.fillStyle=g;c.fillRect(0,0,w,h);c.fillStyle="#fff";c.fillRect(70,40,120,70);c.fillRect(320,36,150,56)});ET.encoding=T3.sRGBEncoding;
+ var es=new T3.Scene();es.add(new T3.Mesh(new T3.SphereGeometry(20,32,16),new T3.MeshBasicMaterial({map:ET,side:T3.BackSide})));
+ var sn=new T3.Scene();sn.environment=new T3.PMREMGenerator(rd).fromScene(es,.03).texture;
+ var cam=new T3.PerspectiveCamera(32,W/H,.1,50);cam.position.set(0,3.1,4.5);cam.lookAt(0,.3,0);
+ sn.add(new T3.HemisphereLight(0xffffff,0xb9c7bd,.3));
+ var key=new T3.DirectionalLight(0xfff3e0,.95);key.position.set(3,5.5,3);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.bias=-.0006;
+ var sh=key.shadow.camera;sh.left=sh.bottom=-2.4;sh.right=sh.top=2.4;sh.near=.5;sh.far=14;sn.add(key);
+ var gr=new T3.Mesh(new T3.PlaneGeometry(12,12),new T3.ShadowMaterial({opacity:.24}));gr.rotation.x=-Math.PI/2;gr.position.y=-.002;gr.receiveShadow=true;sn.add(gr);
+ var NZ=cv(128,128,function(c,w,h){for(var i=0;i<2600;i++){var v=Math.random()*255|0;c.fillStyle="rgb("+v+","+v+","+v+")";c.fillRect(Math.random()*w,Math.random()*h,2+Math.random()*3,2+Math.random()*3)}});
+ var WD=cv(256,256,function(c,w,h){c.fillStyle="#b98b5a";c.fillRect(0,0,w,h);for(var i=0;i<140;i++){c.fillStyle="rgba("+(60+Math.random()*40|0)+",40,20,"+(.05+Math.random()*.12)+")";c.fillRect(0,Math.random()*h,w,1+Math.random()*3)}});WD.encoding=T3.sRGBEncoding;
+ var BM={bumpMap:NZ,bumpScale:1.5};
+ var SP=new T3.SphereGeometry(1,20,14),CY=new T3.CylinderGeometry(1,1,1,28),BX=new T3.BoxGeometry(1,1,1);
+ function RN(s){return function(){s=s*16807%2147483647;return (s-1)/2147483646}}
+ function Mt(c,r,o){var m=new T3.MeshPhysicalMaterial({color:new T3.Color(c).convertSRGBToLinear(),roughness:r==null?.6:r,side:T3.DoubleSide,envMapIntensity:.8});if(o)for(var k in o)m[k]=o[k];return m}
+ function mk(geo,c,x,y,z,sx,sy,sz,r,o){var m=new T3.Mesh(geo,c&&c.isMaterial?c:Mt(c,r,o));m.position.set(x,y,z);m.scale.set(sx,sy,sz);m.castShadow=m.receiveShadow=true;return m}
+ function add(g,geo,c,x,y,z,sx,sy,sz,r,o){var m=mk(geo,c,x,y,z,sx,sy,sz,r,o);g.add(m);return m}
+ function SC(g,geo,cs,n,d0,d1,y,s,seed,o){o=o||{};var r=RN(seed),m,a,d,k;for(var i=0;i<n;i++){a=r()*6.283;d=d0+Math.sqrt(r())*(d1-d0);k=.8+r()*.4;m=add(g,geo,cs[i%cs.length],CL(a)*d,y+(o.st?r()*o.st:0),SN(a)*d,s[0]*k,s[1]*k,s[2]*k,o.r==null?.6:o.r,o.m);m.rotation.set(o.t?(r()-.5)*o.t:0,r()*6.28,o.t?(r()-.5)*o.t:0)}}
+ function bowl(g,c,R,Hh,r,o){var p=[[0,0],[.4*R,0],[.56*R,.08*Hh],[.86*R,.5*Hh],[R,Hh],[.95*R,Hh+.015],[.8*R,.55*Hh],[.5*R,.16*Hh],[0,.12*Hh]].map(function(a){return new T3.Vector2(a[0],a[1])});var m=new T3.Mesh(new T3.LatheGeometry(p,56),Mt(c,r==null?.35:r,o||{clearcoat:.6,clearcoatRoughness:.15}));m.castShadow=m.receiveShadow=true;g.add(m);return m}
+ function liq(g,c,x,y,z,rad,r){return add(g,CY,c,x,y,z,rad,.04,rad,r==null?.15:r,{clearcoat:1,clearcoatRoughness:.08})}
+ function rice(g,n,R,hh,y,seed,tint){var r=RN(seed),im=new T3.InstancedMesh(new T3.SphereGeometry(1,8,6),Mt(0xfbf7ea,.45,{clearcoat:.2}),n),d=new T3.Object3D(),c=new T3.Color(),a,u,i;for(i=0;i<n;i++){a=r()*6.283;u=Math.sqrt(r())*R;d.position.set(CL(a)*u,y+r()*hh*(1-u*u/(R*R)),SN(a)*u);d.rotation.set(r()*3,r()*3,r()*3);d.scale.set(.055,.026,.026);d.updateMatrix();im.setMatrixAt(i,d.matrix);if(tint){c.setHex(tint[i%tint.length]).convertSRGBToLinear();im.setColorAt(i,c)}}im.castShadow=im.receiveShadow=true;g.add(im)}
+ function strands(g,n,R,y,hh,th,c,seed,o){var r=RN(seed),m=Mt(c,.45,o||{clearcoat:.3}),i,j,p,a,sw,rr,q,rad,s;for(i=0;i<n;i++){p=[];a=r()*6.283;sw=2.5+r()*3;rr=R*(.35+r()*.65);for(j=0;j<=10;j++){q=a+j/10*sw;rad=rr*(.55+.45*SN(j*1.3+i));p.push(new T3.Vector3(CL(q)*rad,y+r()*hh,SN(q)*rad))}s=new T3.Mesh(new T3.TubeGeometry(new T3.CatmullRomCurve3(p),48,th,5,false),m);s.castShadow=s.receiveShadow=true;g.add(s)}}
+ function glass(g,x,z,h,rad,lc){var gm=mk(new T3.CylinderGeometry(rad,rad*.88,h,36,1,true),Mt(0xe2f1ec,.05,{transparent:true,opacity:.2,clearcoat:1}),x,h/2+.03,z,1,1,1);gm.castShadow=false;g.add(gm);add(g,CY,0xcfe3dc,x,.05,z,rad*.88,.05,rad*.88,.2);add(g,CY,lc,x,.05+h*.38,z,rad*.86,h*.74,rad*.86,.15,{clearcoat:.8})}
+ function stew(g,potc,bc){bowl(g,potc,.95,.75,.85,{});liq(g,bc,0,.56,0,.8,.25)}
+ var B3={
+ bibim:function(g){bowl(g,0x2b2725,1.05,.62,.5,{clearcoat:.3});add(g,CY,0xf6f1e4,0,.4,0,.84,.1,.84,.5,BM);
+  [0x3f7d3a,0xe8832a,0xefe6b4,0x4a2f20,0x8a6a3b].forEach(function(c,i){var w=new T3.Mesh(new T3.CylinderGeometry(.84,.84,.12,24,1,false,i*1.2566,1.17),Mt(c,.7,BM));w.position.y=.47;w.castShadow=w.receiveShadow=true;g.add(w)});
+  add(g,SP,0xffffff,0,.55,0,.34,.035,.34,.25,{clearcoat:.8});add(g,SP,0xf4a712,0,.6,0,.13,.1,.13,.15,{clearcoat:1});add(g,SP,0xc0301c,.5,.54,.32,.17,.08,.14,.25,{clearcoat:.8});SC(g,SP,[0xf3e6c4],60,0,.8,.54,[.022,.012,.022],21)},
+ kfr:function(g){bowl(g,0x26384f,1.35,.16,.3,{clearcoat:.35});rice(g,900,.8,.5,.1,5,[0xffffff,0xf7cfae,0xf2a273,0xfff4de]);
+  SC(g,BX,[0xc9402a,0xe5cf8c,0xb5321f],26,0,.75,.2,[.1,.03,.07],8,{st:.3,t:.8});SC(g,CY,[0x3f8a2e],14,0,.75,.42,[.05,.02,.05],9,{st:.1});
+  add(g,SP,0xffffff,0,.64,0,.5,.045,.46,.2,{clearcoat:.8}).rotation.y=.4;add(g,SP,0xf3a712,.05,.7,0,.16,.12,.16,.15,{clearcoat:1})},
+ dolsot:function(g){var p=bowl(g,0x2a2624,.95,.7,.5,{});p.position.x=-.35;var q=new T3.Group();q.position.set(-.35,0,0);g.add(q);
+  rice(q,800,.66,.28,.32,6,[0xffffff,0xf3e7c8]);SC(q,SP,[0x8a2f1f,0xc89a5b,0xe3c06a],8,0,.5,.58,[.1,.07,.07],4,{st:.05});SC(q,CY,[0x3f8a2e],8,0,.5,.62,[.04,.02,.04],5);
+  var b=bowl(g,0xf4f2ec,.5,.3,.35);b.position.set(1.05,0,.6);liq(g,0xd8c9a0,1.05,.22,.6,.4,.2)},
+ kjj:function(g){stew(g,0x4a2c1f,0xa8321a);SC(g,BX,[0xd9482a,0xe07a3a],7,.05,.6,.6,[.2,.025,.1],12,{st:.04,t:.5});SC(g,SP,[0xe8bfae],5,.1,.6,.6,[.16,.03,.1],13);SC(g,BX,[0xf3ecd2],5,.1,.55,.63,[.12,.07,.12],14);SC(g,CY,[0x3d8a2d],9,0,.65,.62,[.04,.02,.04],15)},
+ doen:function(g){stew(g,0x4a2c1f,0xb07a37);SC(g,BX,[0xf3ecd2],5,.1,.5,.64,[.26,.14,.26],5);SC(g,CY,[0x6f9c42,0xb5d27a],6,.1,.6,.6,[.17,.025,.17],6);SC(g,CY,[0x3d8a2d],8,0,.65,.6,[.045,.03,.045],7);SC(g,CY,[0xc92a1c],2,.1,.4,.61,[.08,.02,.08],8)},
+ sundubu:function(g){stew(g,0x3a2418,0xc0391b);add(g,SP,0xfbf6e8,0,.64,0,.42,.2,.4,.35,{clearcoat:.5});add(g,SP,0xffffff,.32,.62,.3,.2,.03,.17,.25,{clearcoat:.8});add(g,SP,0xf4a712,.32,.66,.3,.08,.07,.08,.15,{clearcoat:1});SC(g,SP,[0xe86a3c],3,.45,.62,.62,[.14,.06,.07],3);SC(g,SP,[0xd8d2c4],3,.4,.6,.62,[.1,.06,.1],4);SC(g,CY,[0x3d8a2d],10,.2,.65,.6,[.04,.02,.04],5)},
+ seol:function(g){bowl(g,0x25272a,1.05,.7,.3,{clearcoat:.45});liq(g,0xefe8d8,0,.5,0,.86,.12);SC(g,SP,[0xa8695a,0xb9786a],6,.1,.6,.57,[.2,.03,.13],2,{t:.3});SC(g,CY,[0x4a9a33],30,0,.8,.55,[.04,.02,.04],3);strands(g,6,.5,.54,.03,.012,0xefe6cc,2,{})},
+ bulgo:function(g){bowl(g,0xf2f0ea,1.35,.14,.3);SC(g,SP,[0x6b3a22,0x7a4528,0x4e2915],14,0,.55,.12,[.36,.07,.22],9,{st:.14,t:.4,r:.4,m:{bumpMap:NZ,bumpScale:1.5,clearcoat:.4}});SC(g,SP,[0xe6d8a8],8,0,.6,.24,[.14,.015,.05],11,{t:.5});SC(g,SP,[0x8fbf55,0x6fa845],3,.85,.95,.1,[.5,.05,.36],12,{t:.3});SC(g,SP,[0xf3e6c4],40,0,.5,.3,[.02,.012,.02],13)},
+ sam:function(g){bowl(g,0x303338,1.4,.14,.4);var C=[0xb2683f,0xf1dcc8,0xd9867a,0xf1dcc8,0xdb8f80],i,j,a,d,x,z;
+  for(i=0;i<6;i++){a=i*1.2566;d=i<5?.66:0;x=CL(a)*d;z=SN(a)*d;for(j=0;j<5;j++)add(g,BX,C[j],x,.1+j*.024,z,.62,.024,.32,.5,{clearcoat:.3}).rotation.y=a+1.5708+(i==5?.4:0)}
+  SC(g,SP,[0x86b94d,0x6fa845],4,1.0,1.12,.12,[.35,.04,.28],14,{t:.3});var b=bowl(g,0xf4f2ec,.3,.14,.3);b.position.set(-.2,.03,1.02);add(g,CY,0x8a4a28,-.2,.12,1.02,.22,.03,.22,.3,{clearcoat:.6});add(g,SP,0x3f8a2e,.4,.12,1.0,.22,.035,.035,.4)},
+ galbi:function(g){bowl(g,0xf2f0ea,1.4,.14,.3);var r=RN(6),i,j,z;
+  for(i=0;i<4;i++){z=-.62+i*.42;var q=new T3.Group();q.position.set(0,0,z);q.rotation.y=(r()-.5)*.2;g.add(q);add(q,BX,0x7a3f22,0,.2,0,.9,.16,.3,.4,{bumpMap:NZ,bumpScale:1.5,clearcoat:.5});var b=add(q,CY,0xf1e6cc,.6,.2,0,.045,.5,.045,.5);b.rotation.z=1.5708;for(j=0;j<3;j++)add(q,BX,0x2a150c,(j-1)*.24,.285,0,.05,.01,.3,.6)}
+  SC(g,CY,[0x4a9a33],6,0,.1,.12,[.03,.02,.03],6)},
+ naeng:function(g){bowl(g,0x25272a,1.1,.7,.3,{clearcoat:.45});liq(g,0xcfc6a4,0,.5,0,.9,.2);add(g,SP,0xb9aa86,0,.54,0,.62,.1,.62,.8);strands(g,16,.55,.56,.08,.026,0xc9b88d,7,{clearcoat:.15});
+  add(g,SP,0xffffff,.5,.66,.3,.22,.1,.16,.3,{clearcoat:.8});add(g,SP,0xf4a712,.5,.72,.3,.1,.07,.1,.15,{clearcoat:1});
+  for(var i=0;i<3;i++){var x=-.55+i*.12,z=.45-i*.3;add(g,CY,0x5f9d4b,x,.62,z,.13,.025,.13,.5);add(g,CY,0xb9d9a0,x,.636,z,.1,.02,.1,.5)}
+  add(g,SP,0x8b4a3a,-.45,.64,-.3,.24,.04,.15,.4,{clearcoat:.4});add(g,CY,0xf3c6cc,.2,.64,-.55,.13,.03,.13,.5);
+  var ice=Mt(0xeaf4ff,.05,{transparent:true,opacity:.5,clearcoat:1});[[.6,-.4],[-.7,.1],[.2,.7]].forEach(function(p,j){var c=mk(BX,ice,p[0],.62,p[1],.2,.2,.2);c.castShadow=false;c.rotation.set(.3*j,.6*j,.2);g.add(c)})},
+ jap:function(g){bowl(g,0x303f55,1.35,.16,.3,{clearcoat:.45});strands(g,22,.7,.2,.3,.03,0x5b3a2a,3,{clearcoat:.6});
+  SC(g,BX,[0xe8832a,0x3f7d3a,0xc8352a,0xe9d9a0,0x2e211a,0xf2c94c],40,0,.75,.2,[.17,.012,.02],6,{st:.3,t:.6});SC(g,SP,[0xf3e6c4],40,0,.7,.42,[.02,.012,.02],7)},
+ kal:function(g){bowl(g,0x273a52,1.1,.7,.3,{clearcoat:.45});liq(g,0xe6d9b4,0,.5,0,.9,.2);strands(g,18,.6,.52,.05,.035,0xefe3c0,5,{});
+  SC(g,CY,[0x7aa84a],6,.1,.7,.55,[.1,.012,.1],11);SC(g,BX,[0xf2c94c],6,0,.6,.56,[.2,.006,.03],12);SC(g,BX,[0x1c2a20],3,.1,.5,.57,[.14,.004,.1],13);SC(g,CY,[0x3d8a2d],14,0,.8,.55,[.04,.02,.04],14)},
+ tteok:function(g){bowl(g,0xf0eee8,1.3,.34,.4);liq(g,0xb02a1c,0,.2,0,1,.25);var r=RN(11),i,a,d,t;
+  for(i=0;i<15;i++){a=r()*6.28;d=Math.sqrt(r())*.78;t=add(g,CY,0xd5532f,CL(a)*d,.27+(i%3)*.05,SN(a)*d,.1,.55,.1,.35,{clearcoat:.6});t.rotation.set(0,r()*3.14,Math.PI/2)}
+  SC(g,BX,[0xd9a566],4,0,.6,.36,[.5,.03,.2],3);SC(g,CY,[0x3d8a2d],10,0,.8,.42,[.04,.02,.04],4);SC(g,SP,[0xf3e6c4],30,0,.8,.4,[.02,.012,.02],5)},
+ gim:function(g){bowl(g,0x34363a,1.45,.12,.3,{clearcoat:.35});var cols=[0xf2c94c,0xe8832a,0x3f7d3a,0xe07a7a,0x7a4a2a],i,j,a,d,x,z,b;
+  for(i=0;i<7;i++){a=i*1.0472;d=i?.78:0;x=CL(a)*d;z=SN(a)*d;add(g,CY,0x1d2a22,x,.17,z,.23,.16,.23,.5);add(g,CY,0xfbf7ea,x,.171,z,.205,.16,.205,.45,BM);for(j=0;j<5;j++){b=j*1.2566+i;add(g,CY,cols[j],x+CL(b)*.1,.172,z+SN(b)*.1,.045,.16,.045,.5)}}},
+ paj:function(g){bowl(g,0x842f38,1.3,.1,.3,{clearcoat:.45});var i,w;
+  for(i=0;i<6;i++){w=new T3.Mesh(new T3.CylinderGeometry(.98,.98,.09,16,1,false,i*1.0472,.98),Mt(0xd9a441,.55,{bumpMap:NZ,bumpScale:1.5,clearcoat:.25}));w.position.y=.12;w.castShadow=w.receiveShadow=true;g.add(w)}
+  SC(g,BX,[0x4a9a33,0x6fb04a],26,0,.9,.172,[.2,.02,.03],3,{t:.2});SC(g,SP,[0xf3e4d8],6,0,.8,.18,[.07,.03,.07],4);SC(g,SP,[0xe8774a],4,0,.7,.19,[.13,.05,.06],5,{t:.3})},
+ sik:function(g){glass(g,0,0,1.15,.5,0xe3c27a);SC(g,SP,[0xfffaf0],20,0,.38,.9,[.045,.03,.03],3,{st:.1});SC(g,SP,[0xf1e2b8],4,0,.3,.93,[.05,.03,.03],4)},
+ suj:function(g){var b=bowl(g,0xa9c8b8,.9,.5,.3);liq(g,0x7a3418,0,.36,0,.74,.12);SC(g,SP,[0xf1e2b8],6,0,.5,.4,[.05,.03,.03],3);add(g,CY,0xb55a1c,.2,.39,.1,.2,.02,.2,.6);
+  add(g,CY,0x6e3b1e,-.1,.42,0,.03,.7,.03,.7).rotation.z=1.4;add(g,CY,0x6e3b1e,.1,.44,-.05,.03,.7,.03,.7).rotation.set(.3,.5,1.5)},
+ mak:function(g){var b=bowl(g,0x26384f,.85,.42,.25,{clearcoat:.4});b.position.set(.5,0,.35);liq(g,0xf4f0e3,.5,.3,.35,.68,.1);
+  add(g,CY,0xd9ad2e,-.8,.33,-.5,.4,.6,.4,.3,{metalness:.7});add(g,CY,0xd9ad2e,-.8,.7,-.5,.22,.14,.22,.3,{metalness:.7});var h=add(g,new T3.TorusGeometry(.2,.03,8,24),0xd9ad2e,-.5,.4,-.5,1,1,1,.3,{metalness:.7});h.rotation.y=1.5708;
+  var b2=bowl(g,0x842f38,.4,.25,.25,{clearcoat:.4});b2.position.set(.55,0,-.7);liq(g,0xf4f0e3,.55,.19,-.7,.33,.1)}
+ };
+ var RX={bibim:"hot",kfr:"hot",dolsot:"hot",kjj:"boil",doen:"boil",sundubu:"boil",seol:"hot",bulgo:"smoke",sam:"smoke",galbi:"smoke",naeng:"cold",jap:"hot",kal:"hot",tteok:"boil",gim:"fresh",paj:"smoke",sik:"cold",suj:"cold",mak:"cold"},BY={tteok:.24};
+ var SPT=cv(64,64,function(c){var g=c.createRadialGradient(32,32,2,32,32,32);g.addColorStop(0,"rgba(255,255,255,.95)");g.addColorStop(1,"rgba(255,255,255,0)");c.fillStyle=g;c.fillRect(0,0,64,64)});
+ var FX={hot:{n:9,y:.75,r:.5,rise:1.2,c:0xffffff,sz:.6,op:.5,sp:.3},boil:{n:8,y:.75,r:.5,rise:1.2,c:0xffffff,sz:.6,op:.5,sp:.38},smoke:{n:9,y:.4,r:.8,rise:1.4,c:0xd6d6d6,sz:.55,op:.38,sp:.45},cold:{n:10,y:.65,r:.9,rise:-.3,c:0xcfe6ff,sz:.6,op:.4,sp:.28}};
+ var G={},SH=[],io=null,run=false;
+ function mdl(k){if(G[k])return G[k];var g=new T3.Group();B3[k](g);var t=RX[k],f=FX[t],ps=[],bs=[],i,m;
+  if(f)for(i=0;i<f.n;i++){m=new T3.Sprite(new T3.SpriteMaterial({map:SPT,color:f.c,transparent:true,opacity:0,depthWrite:false}));m.visible=false;g.add(m);ps.push(m)}
+  if(t==="boil")for(i=0;i<10;i++){m=new T3.Mesh(SP,Mt(0xf3d9a8,.1,{transparent:true,opacity:.6,clearcoat:1}));m.visible=false;g.add(m);bs.push(m)}
+  g.userData={f:f,t:t,ps:ps,bs:bs,by:BY[k]||.6};g.visible=false;sn.add(g);return G[k]=g}
+ function fx(g,a,t){var d=g.userData,f=d.f;
+  d.ps.forEach(function(s,i){var u=(t*f.sp+i/f.n)%1,an=i*2.4,r,z;
+   if(d.t==="cold"){r=f.r*(.25+u);s.position.set(CL(an)*r,f.y-u*.4,SN(an)*r)}else s.position.set(CL(an)*f.r*.5+SN(u*6+i)*.12,f.y+u*f.rise,SN(an)*f.r*.5+CL(u*5+i)*.1);
+   z=f.sz*(.5+u*1.3);s.scale.set(z,z,1);s.material.opacity=a*f.op*SN(Math.PI*u);s.visible=a>.02});
+  d.bs.forEach(function(b,i){var u=(t*.9+i*.37)%1,an=i*2.1,r=.15+(i%4)*.14,z=.07*Math.min(1,u*1.8);b.position.set(CL(an)*r,d.by,SN(an)*r);b.scale.set(z,z*.7,z);b.visible=a>.05&&u<.88&&z>.005})}
+ function draw(s,t){var g=mdl(s.k),a=s.act,d=g.userData;Object.keys(G).forEach(function(k){G[k].visible=k===s.k});
+  g.rotation.set(s.y*.16,.4+s.x*.3,-s.x*.12);g.position.set(0,a*.14,0);
+  if(d.t==="smoke")g.position.x=SN(t*70)*.006*a;if(d.t==="boil")g.position.x=SN(t*45)*.004*a;if(d.t==="fresh")g.position.y+=Math.abs(SN(t*7))*.1*a;
+  if(d.f)fx(g,a,t);
+  rd.render(sn,cam);var c=s.cv.getContext("2d");c.clearRect(0,0,W,H);c.drawImage(rd.domElement,0,0);s.el.style.setProperty("--lift",a.toFixed(3))}
+ function kick(){if(!run){run=true;requestAnimationFrame(tick)}}
+ function tick(t){var busy=false;t/=1000;SH.forEach(function(s){if(!s.v)return;s.act+=((s.h?1:0)-s.act)*.1;s.x+=(s.tx-s.x)*.14;s.y+=(s.ty-s.y)*.14;
+  if(s.h||s.act>.02||Math.abs(s.x)+Math.abs(s.y)>.02){busy=true;draw(s,t)}else if(s.act||s.x||s.y){s.act=s.x=s.y=0;draw(s,t)}});if(busy)requestAnimationFrame(tick);else run=false}
+ function bind(){
+  SH=[];
+  if(!io)io=new IntersectionObserver(function(es){es.forEach(function(e){SH.forEach(function(s){if(s.el===e.target){s.v=e.isIntersecting;if(s.v)draw(s,0)}})})},{rootMargin:"80px"});
+  io.disconnect();
+  document.querySelectorAll("#menuGrid .shot").forEach(function(el){
+   var s={el:el,cv:el.firstChild,k:el.dataset.k,v:false,h:false,act:0,x:0,y:0,tx:0,ty:0},c=el.parentNode;SH.push(s);
+   c.addEventListener("pointerenter",function(){s.h=true;kick()});
+   c.addEventListener("pointermove",function(e){var b=s.cv.getBoundingClientRect();s.tx=Math.max(-1,Math.min(1,(e.clientX-b.left)/b.width*2-1));s.ty=Math.max(-1,Math.min(1,(e.clientY-b.top)/b.height*2-1));kick()});
+   c.addEventListener("pointerleave",function(){s.h=false;s.tx=s.ty=0;kick()});
+   io.observe(el)});
+ }
+ R3={bind:bind};$("menuGrid").classList.add("has-3d");bind();
+}
+setTimeout(init3D,0);
+apply();
+</script>
+</body>
+</html>
