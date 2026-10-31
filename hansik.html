@@ -241,6 +241,35 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
 :root[data-theme="dark"] .feature-card.c-hwang .swatch,:root:not([data-theme="light"]):not([data-theme="dark"]) .feature-card.c-hwang .swatch{background:#ffd166!important;color:#3b3220!important;border:0!important}
 :root[data-theme="dark"] .feature-card.c-baek .swatch,:root:not([data-theme="light"]):not([data-theme="dark"]) .feature-card.c-baek .swatch{background:#d9e4ec!important;color:#2f3a44!important;border:2px solid #9fb3c2!important}
 :root[data-theme="dark"] .feature-card.c-heuk .swatch,:root:not([data-theme="light"]):not([data-theme="dark"]) .feature-card.c-heuk .swatch{background:#090b0d!important;color:#e9edf2!important;border:2px solid #69727c!important}
+/* Dish details: description stays spacious, facts span the full card width */
+.dish{grid-template-columns:200px minmax(0,1fr)}
+.dish-copy{min-width:0}
+.dish-copy p{max-width:none}
+.dish .stats.three{
+  grid-column:1/-1;
+
+  grid-template-columns:1fr;
+  gap:0;
+  margin-top:16px;
+}
+.dish .stats.three .stat{
+  display:grid;
+  grid-template-columns:minmax(78px, 110px) 1fr;
+  align-items:start;
+  gap:16px;
+  padding:12px 0;
+  border:0;
+  border-top:1px solid var(--line);
+  border-radius:0;
+  background:none!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.dish .stats.three .stat:last-child{border-bottom:1px solid var(--line)}
+.dish .stat-label{margin-bottom:0}
+@media (max-width:850px){.dish{grid-template-columns:1fr}.dish .stats.three{grid-column:auto}}
+@media (max-width:620px){.dish .stats.three .stat{grid-template-columns:82px 1fr}}
 </style>
 </head>
 <body>
@@ -262,7 +291,7 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
   <nav class="nav container" aria-label="Sections">
     <a class="brand" href="#home"><span class="brand-mark" id="mark" aria-hidden="true"></span><span data-i18n="brand"></span></a>
     <div class="nav-links">
-      <a href="#sang" data-i18n="n1"></a><a href="#color" data-i18n="n2"></a><a href="#manner" data-i18n="n3"></a><a href="#jang" data-i18n="n4"></a><a href="#menu" data-i18n="n5"></a>
+      <a href="#color" data-i18n="n2"></a><a href="#manner" data-i18n="n3"></a><a href="#jang" data-i18n="n4"></a><a href="#menu" data-i18n="n5"></a>
       <button class="tbtn" id="lang" type="button" aria-label="Translate / 번역"></button>
       <button class="tbtn" id="theme" type="button" aria-pressed="false"></button>
     </div>
@@ -275,20 +304,12 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
     <div class="hero-text">
       <h1 data-i18n="h1"></h1>
       <p class="hero-copy" data-i18n="intro"></p>
-      <a class="button" href="#sang"><span data-i18n="cta"></span><span aria-hidden="true">&nbsp;→</span></a>
     </div>
     <div class="dashboard hero-card" id="hcard" role="group" aria-labelledby="htitle">
       <div class="dashboard-top"><p class="dashboard-title" id="htitle"></p><span class="status" id="hpill"></span></div>
       <div class="hero-mid"><div class="art-tile anim" id="hart" aria-hidden="true"></div><div class="stats" id="hstats"></div></div>
       <div class="inventory-list" id="hlist"></div>
     </div>
-  </div>
-</section>
-
-<section class="section" id="sang">
-  <div class="container">
-    <div class="section-heading"><p class="eyebrow" data-i18n="n1"></p><h2 data-i18n="h2a"></h2><p data-i18n="lede_a"></p></div>
-    <div class="dashboard explorer"><div class="dish-list" id="plates" role="group"></div><article class="dish" id="detail" aria-live="polite"></article></div>
   </div>
 </section>
 
@@ -471,7 +492,7 @@ function buildPlates(){
 function selDish(i){
   sel=i;document.querySelectorAll("#plates button").forEach(function(b,j){b.setAttribute("aria-pressed",String(j===i))});
   var d=D[i],o=d[lang],x=$("detail");x.className="dish c-"+d.c;
-  x.innerHTML='<div class="art-tile anim" id="dart" aria-hidden="true"></div><div><h3>'+o.k+' · '+o.e+'</h3><p>'+o.t+'</p><div class="stats three">'+o.f.map(function(a){return st(a[0],a[1],1)}).join("")+'</div></div>';
+  x.innerHTML='<div class="art-tile anim" id="dart" aria-hidden="true"></div><div class="dish-copy"><h3>'+o.k+' · '+o.e+'</h3><p>'+o.t+'</p></div><div class="stats three">'+o.f.map(function(a){return st(a[0],a[1],1)}).join("")+'</div>';
   put($("dart"),AK[i]);
 }
 var mcat=-1;
@@ -494,11 +515,10 @@ function apply(){
   var t=T[lang];root.lang=lang;document.title=t.title;
   document.querySelectorAll("[data-i18n]").forEach(function(el){el.innerHTML=t[el.getAttribute("data-i18n")]});
   $("mark").textContent=t.brand.charAt(0);$("lang").textContent=lang==="ko"?"EN":"한국어";$("hint").textContent=U[lang].hint;
-  setTheme();buildPlates();selDish(sel);renderHero();renderMenu();if(R3)R3.bind();renderTally();
+  setTheme();renderHero();renderMenu();if(R3)R3.bind();renderTally();
 }
 $("lang").addEventListener("click",function(){lang=lang==="ko"?"en":"ko";try{localStorage.setItem("lang",lang)}catch(e){}apply()});
 $("theme").addEventListener("click",function(){var d=dark()?"light":"dark";root.dataset.theme=d;try{localStorage.setItem("theme",d)}catch(e){}setTheme()});
-$("plates").addEventListener("click",function(e){var b=e.target.closest("button");if(b)selDish(+b.dataset.i)});
 $("hlist").addEventListener("click",function(e){var b=e.target.closest("button");if(b)heroSet(+b.dataset.j)});
 $("menuGrid").addEventListener("click",function(e){var c=e.target.closest(".dcard");if(!c)return;var k=c.dataset.k;picked[k]=!picked[k];c.classList.toggle("on",!!picked[k]);c.querySelector(".mi").setAttribute("aria-pressed",String(!!picked[k]));renderTally()});
 $("mtabs").addEventListener("click",function(e){var b=e.target.closest(".mtab");if(!b)return;mcat=+b.dataset.c;document.querySelectorAll("#mtabs .mtab").forEach(function(x){x.setAttribute("aria-pressed",String(+x.dataset.c===mcat))});document.querySelectorAll("#menuGrid .mcat").forEach(function(x,n){x.hidden=mcat>=0&&mcat!==n})});
