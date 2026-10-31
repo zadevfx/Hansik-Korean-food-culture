@@ -224,6 +224,9 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
 }
 @media (max-width:620px){.menu{grid-template-columns:1fr}.stats.three{grid-template-columns:1fr}.footer-inner{flex-direction:column}}
 @media (max-width:560px){.container{width:calc(100% - 28px)}.nav{min-height:64px}.section{padding:62px 0}.dashboard{padding:15px}.features{grid-template-columns:1fr}.inventory-row{gap:8px;padding:11px 9px}.brand span:last-child{display:none}.hero-mid{grid-template-columns:1fr}.dish-list{grid-template-columns:1fr}.tally{gap:10px;padding-left:14px;font-size:.82rem}}
+/* Blend the hero into the following section instead of ending on a hard color edge. */
+.hero{position:relative;isolation:isolate}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-110px;height:160px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(205,46,58,.08),rgba(0,71,160,.10) 48%,transparent);filter:blur(18px);opacity:.9}
 </style>
 <style id="light-acrylic-final">
 :root[data-theme="light"] body{background-image:radial-gradient(ellipse at 16% 10%,rgba(205,46,58,.12),transparent 31%),radial-gradient(ellipse at 84% 72%,rgba(0,71,160,.16),transparent 35%),linear-gradient(135deg,#f5f7f7,#edf3f6 56%,#f8f4f3)!important;background-color:#edf2f4!important}
