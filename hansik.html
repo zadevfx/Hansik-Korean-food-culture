@@ -196,6 +196,13 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
 @media (max-width:1000px){.mgrid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:620px){.mgrid{grid-template-columns:1fr;gap:92px}.shot{margin-top:-74px}}
 .mnote{margin:28px 0 0;color:var(--muted);font-size:.85rem;text-align:center}
+.restaurant-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:32px}
+.restaurant-card{padding:24px 22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,color-mix(in srgb,var(--green) 10%,var(--card)),var(--card));box-shadow:0 18px 34px -28px rgba(0,71,160,.35)}
+.restaurant-card a{color:inherit;text-decoration:none}
+.restaurant-card a:hover{color:var(--green)}
+.restaurant-card h3{margin:0 0 8px;font-size:1.25rem;letter-spacing:-.03em}
+.restaurant-card p{margin:0;color:var(--muted);line-height:1.6}
+.restaurant-card .label{display:block;margin-bottom:8px;color:var(--green);font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .tally{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:40;transform:translateX(-50%);display:flex;align-items:center;gap:16px;width:max-content;max-width:calc(100% - 28px);padding:10px 10px 10px 20px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow);font-size:.9rem}
 .tally[hidden]{display:none}
 .tally strong{font-size:1.1rem;letter-spacing:-.02em}
@@ -365,6 +372,38 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
     <p class="mnote" data-i18n="mnote"></p>
   </div>
 </section>
+  <section class="section alt" id="restaurants">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">추천 한식당</p>
+        <h2>주변의 한식 레스토랑</h2>
+        <p>아래 식당들은 한식을 즐기기 좋은 곳으로, 이름과 주소를 정리해 두었습니다.</p>
+      </div>
+      <div class="restaurant-list">
+        <article class="restaurant-card">
+          <span class="label">Restaurant 1</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Yewon+Restaurant+Oragadam+Chennai+Padervadi+Tamil+Nadu+603204" target="_blank" rel="noopener noreferrer">
+            <h3>Yewon Restaurant</h3>
+            <p>Shop No. 2, Oragadam, Chennai, Padervadi, Tamil Nadu 603204</p>
+          </a>
+        </article>
+        <article class="restaurant-card">
+          <span class="label">Restaurant 2</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=TaoBao+Korean+Food+GST+Food+Street+Guduvancheri+Chengalpattu+Tamil+Nadu" target="_blank" rel="noopener noreferrer">
+            <h3>TaoBao Korean Food</h3>
+            <p>GST Food Street, No: 20, GST Road, Guduvancheri, Chengalpattu, Tamil Nadu</p>
+          </a>
+        </article>
+        <article class="restaurant-card">
+          <span class="label">Restaurant 3</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kimchi-tower+SRM+Potheri+15+Bajanai+Kovil+St+Potheri+SRM+Nagar+Kattankulathur+Tamil+Nadu+603203" target="_blank" rel="noopener noreferrer">
+            <h3>Kimchi-tower SRM (Potheri)</h3>
+            <p>15, Bajanai Kovil St, Potheri, SRM Nagar, Kattankulathur, Tamil Nadu 603203</p>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
 </main>
 
 <div class="tally" id="tally" hidden><span id="tcount"></span><strong id="ttotal"></strong><button class="tbtn" id="tclear" type="button"></button></div>
