@@ -94,9 +94,10 @@ main{min-height:calc(100vh - 72px)}
 .nav-links .tbtn+.tbtn{margin-left:-10px}
 /* hero */
 .hero{padding:76px 0 84px;background:radial-gradient(ellipse at 86% 18%,rgba(205,46,58,.09),transparent 24%),radial-gradient(ellipse at 14% 82%,rgba(0,71,160,.09),transparent 28%),linear-gradient(135deg,var(--hero-start),var(--hero-end) 62%)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}
-h1{max-width:640px;margin-bottom:20px;font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.12;letter-spacing:-.05em}
-.hero-copy{max-width:540px;margin-bottom:28px;color:var(--muted);font-size:1.08rem}
+.hero-grid{display:block}
+.hero-text{max-width:1040px;margin:0 auto}
+h1{max-width:900px;margin-bottom:24px;font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.12;letter-spacing:-.05em}
+.hero-copy{max-width:900px;margin-bottom:28px;color:var(--muted);font-size:1.15rem;line-height:1.8}
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:8px;background:var(--green);color:var(--white);font-size:.94rem;font-weight:700;transition:background .16s,transform .16s}
 .button:hover{background:var(--green-dark);transform:translateY(-1px)}
 .dashboard{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow)}
@@ -113,13 +114,13 @@ h1{max-width:640px;margin-bottom:20px;font-size:clamp(2.4rem,5.4vw,4.2rem);line-
 .stat-value{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;line-height:1.2}
 .stat-value.sm{font-size:.95rem;font-weight:700;letter-spacing:0;line-height:1.45}
 .inventory-list{overflow:hidden;border:1px solid var(--line);border-radius:12px}
-.inventory-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font-size:.8rem;text-align:left}
+.inventory-row{display:grid;grid-template-columns:1fr;align-items:start;gap:6px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font-size:.8rem;text-align:left}
 .inventory-row:last-child{border-bottom:0}
 button.inventory-row{cursor:pointer;transition:background .16s}
 button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:var(--mint)}
 .inventory-head{background:var(--soft);color:var(--muted);font-size:.7rem;font-weight:700}
 .product{display:flex;align-items:center;font-weight:700}
-.quantity{max-width:12em;color:var(--muted);text-align:right}
+.dish-summary{display:block;margin-left:18px;color:var(--muted);font-weight:400;line-height:1.5}
 .dot{display:inline-block;flex:none;width:9px;height:9px;margin-right:9px;border-radius:50%;background:var(--c)}
 /* sections */
 .section{padding:82px 0}
@@ -315,11 +316,6 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
       <h1 data-i18n="h1"></h1>
       <p class="hero-copy" data-i18n="intro"></p>
     </div>
-    <div class="dashboard hero-card" id="hcard" role="group" aria-labelledby="htitle">
-      <div class="dashboard-top"><p class="dashboard-title" id="htitle"></p><span class="status" id="hpill"></span></div>
-      <div class="hero-mid"><div class="art-tile anim" id="hart" aria-hidden="true"></div><div class="stats" id="hstats"></div></div>
-      <div class="inventory-list" id="hlist"></div>
-    </div>
   </div>
 </section>
 
@@ -415,7 +411,7 @@ button.inventory-row:hover,button.inventory-row[aria-pressed="true"]{background:
 var T={ko:{
 brand:"한식",n1:"상차림",n2:"오방색",n3:"식사 예절",n4:"발효",n5:"메뉴",h2e:"한식당 메뉴판",lede_e:"한국 식당은 밥, 국, 반찬을 한 상에 내는 것이 기본입니다. 주문하면 밑반찬이 먼저 놓이고, 뒤이어 주 요리가 나옵니다.",mnote:"예시 메뉴이며 가격은 가상입니다. 기본 반찬은 보통 무료로 다시 채워 줍니다.",big:"한식",vert:"한 상 가득",
 h1:"밥상은 함께 차리고, 함께 먹는 이야기입니다",
-intro:"한식은 밥과 국을 중심으로 여러 가지 반찬을 한 상에 차려 나누어 먹는 식문화입니다. 발효의 시간과 계절의 재료, 그리고 함께 먹는 마음이 한 끼에 담겨 있습니다.",
+intro:"한식은 밥과 국을 중심으로 여러 가지 반찬을 한 상에 차려 나누어 먹는 식문화입니다. 발효의 시간과 계절의 재료, 그리고 함께 먹는 마음이 한 끼에 담겨 있습니다. 지역마다 김치와 국물 요리의 맛이 다르고, 제철 재료를 활용해 식탁에 다채로운 맛과 색을 더합니다.",
 cta:"상차림 둘러보기",h2a:"어떤 음식이 궁금한가요?",lede_a:"맵고, 달고, 새콤하고, 구수한 일곱 가지 음식입니다. 이름을 눌러 이야기를 읽어 보세요.",
 h2b:"오방색, 음식에 담은 다섯 가지 색",lede_b:"전통 한식에는 고명으로 다섯 가지 색을 맞추는 지혜가 있습니다. 색마다 방위와 기운을 뜻합니다.",
 f1:"동쪽 · 나무의 기운<br>미나리, 쑥갓, 오이",f2:"남쪽 · 불의 기운<br>고추, 대추, 당근",f3:"중앙 · 흙의 기운<br>달걀지단, 황포묵",f4:"서쪽 · 쇠의 기운<br>쌀, 도라지, 무",f5:"북쪽 · 물의 기운<br>표고버섯, 김, 고사리",
@@ -438,7 +434,7 @@ grp:"음식 목록",title:"한식 · 한국 음식 문화"},
 en:{
 brand:"Hansik",n1:"Table",n2:"Five Colors",n3:"Etiquette",n4:"Fermentation",n5:"Menu",h2e:"A Korean restaurant menu",lede_e:"A Korean meal is built around rice, soup, and side dishes served together. Once you order, small side dishes (banchan) arrive first, followed by the main dishes.",mnote:"A sample menu with fictional prices. Basic side dishes are usually refilled for free.",big:"Hansik",vert:"A Full Table",
 h1:"A Korean meal is a story set and shared together",
-intro:"Hansik is a food culture built around rice and soup, with many side dishes laid out on one table to share. The patience of fermentation, seasonal ingredients, and the spirit of eating together all come with each meal.",
+intro:"Hansik is a food culture built around rice and soup, with many side dishes laid out on one table to share. The patience of fermentation, seasonal ingredients, and the spirit of eating together all come with each meal. Kimchi and stews vary from region to region, while seasonal ingredients bring a changing mix of colors and flavors to the table.",
 cta:"Explore the table",h2a:"What would you like to know about?",lede_a:"Seven dishes that are spicy, sweet, tangy, and deeply savory. Select a name to read its story.",
 h2b:"Obangsaek: five colors on the plate",lede_b:"Traditional Korean cooking balances five colors in its garnishes. Each color stands for a direction and an element.",
 f1:"East · Wood<br>minari, crown daisy, cucumber",f2:"South · Fire<br>chili, jujube, carrot",f3:"Center · Earth<br>egg strips, yellow mung jelly",f4:"West · Metal<br>rice, bellflower root, radish",f5:"North · Water<br>shiitake, seaweed, bracken",
@@ -517,21 +513,13 @@ var M=[
 
 var U={ko:{tog:["다크 모드","라이트 모드"],hint:"카드를 눌러 내 상차림에 담고, 마우스를 올려 보세요.",tbl:"내 상차림",clr:"비우기",all:"전체"},en:{tog:["Dark mode","Light mode"],hint:"Select a card to add it to your table. Hover to bring the dish to life.",tbl:"Your table",clr:"Clear",all:"All"}};
 function $(i){return document.getElementById(i)}
-var lang="ko",sel=0,hs=0,hp=false,picked={},HL=[0,1,2,3],root=document.documentElement,mq=matchMedia("(prefers-color-scheme:dark)"),RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+var lang="ko",sel=0,picked={},root=document.documentElement,mq=matchMedia("(prefers-color-scheme:dark)"),RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 try{var s=localStorage.getItem("lang");if(s==="en"||s==="ko")lang=s;var th=localStorage.getItem("theme");if(th==="dark"||th==="light")root.dataset.theme=th}catch(e){}
 function st(l,v,sm){return '<div class="stat"><span class="stat-label">'+l+'</span><span class="stat-value'+(sm?' sm':'')+'">'+v+'</span></div>'}
 function put(el,k){el.innerHTML=art(k);el.querySelectorAll("path,rect,circle,ellipse").forEach(function(n){n.setAttribute("pathLength","1")})}
 function fmt(p){return lang==="ko"?p.toLocaleString("ko-KR")+"원":"₩"+p.toLocaleString("en-US")}
 function dark(){var a=root.dataset.theme;return a?a==="dark":mq.matches}
 function setTheme(){var d=dark();$("theme").textContent=U[lang].tog[d?1:0];$("theme").setAttribute("aria-pressed",String(d))}
-function heroSet(j){hs=j;var d=D[HL[j]],a=$("hart");document.querySelectorAll("#hlist button").forEach(function(b,k){b.setAttribute("aria-pressed",String(k===j))});a.className="art-tile anim c-"+d.c;put(a,AK[HL[j]])}
-function renderHero(){
-  var t=T[lang],n=0;M.forEach(function(m){n+=m.it.length});
-  $("htitle").textContent=t.title;$("hpill").textContent=t.vert;
-  $("hstats").innerHTML=st(t.grp,D.length)+st(t.n5,n);
-  $("hlist").innerHTML='<div class="inventory-row inventory-head"><span>'+t.grp+'</span><span>'+D[0][lang].f[2][0]+'</span></div>'+HL.map(function(d,j){var o=D[d][lang];return '<button type="button" class="inventory-row" data-j="'+j+'" aria-pressed="false"><span class="product"><i class="dot c-'+D[d].c+'"></i>'+o.k+'</span><span class="quantity">'+o.f[2][1]+'</span></button>'}).join("");
-  heroSet(hs);
-}
 function buildPlates(){
   $("plates").innerHTML=D.map(function(x,i){var p=x[lang];return '<button type="button" class="dish-btn c-'+x.c+'" data-i="'+i+'" aria-pressed="false"><i class="dot"></i><span><b>'+p.k+'</b><small>'+p.e+'</small></span></button>'}).join("");
 }
@@ -561,16 +549,13 @@ function apply(){
   var t=T[lang];root.lang=lang;document.title=t.title;
   document.querySelectorAll("[data-i18n]").forEach(function(el){el.innerHTML=t[el.getAttribute("data-i18n")]});
   $("mark").textContent=t.brand.charAt(0);$("lang").textContent=lang==="ko"?"EN":"한국어";$("hint").textContent=U[lang].hint;
-  setTheme();renderHero();renderMenu();if(R3)R3.bind();renderTally();
+  setTheme();renderMenu();if(R3)R3.bind();renderTally();
 }
 $("lang").addEventListener("click",function(){lang=lang==="ko"?"en":"ko";try{localStorage.setItem("lang",lang)}catch(e){}apply()});
 $("theme").addEventListener("click",function(){var d=dark()?"light":"dark";root.dataset.theme=d;try{localStorage.setItem("theme",d)}catch(e){}setTheme()});
-$("hlist").addEventListener("click",function(e){var b=e.target.closest("button");if(b)heroSet(+b.dataset.j)});
 $("menuGrid").addEventListener("click",function(e){var c=e.target.closest(".dcard");if(!c)return;var k=c.dataset.k;picked[k]=!picked[k];c.classList.toggle("on",!!picked[k]);c.querySelector(".mi").setAttribute("aria-pressed",String(!!picked[k]));renderTally()});
 $("mtabs").addEventListener("click",function(e){var b=e.target.closest(".mtab");if(!b)return;mcat=+b.dataset.c;document.querySelectorAll("#mtabs .mtab").forEach(function(x){x.setAttribute("aria-pressed",String(+x.dataset.c===mcat))});document.querySelectorAll("#menuGrid .mcat").forEach(function(x,n){x.hidden=mcat>=0&&mcat!==n})});
 $("tclear").addEventListener("click",function(){picked={};renderMenu();if(R3)R3.bind();renderTally()});
-var hc=$("hcard");hc.addEventListener("mouseenter",function(){hp=true});hc.addEventListener("mouseleave",function(){hp=false});hc.addEventListener("focusin",function(){hp=true});hc.addEventListener("focusout",function(){hp=false});
-if(!RM)setInterval(function(){if(!hp&&!document.hidden)heroSet((hs+1)%HL.length)},3800);
 /* 3D food renders: one model per menu item, drawn by a shared WebGL renderer */
 var R3=null,MK=[["bibim","kfr","dolsot"],["kjj","doen","sundubu","seol"],["bulgo","sam","galbi"],["naeng","jap","kal"],["tteok","gim","paj"],["sik","suj","mak"]];
 function init3D(){
